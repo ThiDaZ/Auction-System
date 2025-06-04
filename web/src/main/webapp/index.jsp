@@ -92,6 +92,7 @@
     <footer class="py-8 px-10 text-center border-t border-gray-200 bg-white">
         <p class="text-sm text-gray-600">© 2025 Auction. All rights reserved.</p>
     </footer>
+    <script src="assets/scripts/session.js"></script>
 </div>
 </body>
 </html>

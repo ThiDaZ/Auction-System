@@ -24,7 +24,8 @@
                     Sign in to continue to BidHub.
                 </p>
             </div>
-            <form class="mt-8 space-y-6" method="POST">
+            <%@ include file="components/alertMessage.jsp" %>
+            <div class="mt-8 space-y-6">
                 <div>
                     <div class="pt-4">
                         <label class="block text-sm font-medium text-slate-700 mb-1" for="username">Username</label>
@@ -59,17 +60,20 @@
                 </div>
                 <div>
                     <button class="w-full rounded-md bg-blue-600 py-3 px-4 text-sm font-semibold text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 transition-colors duration-150"
-                            type="submit">
+                            onclick="signup()"
+                    >
                         Create Account
                     </button>
                 </div>
-            </form>
+            </div>
             <p class="mt-6 text-center text-sm text-slate-600">
                 Already have an account?
-                <a class="font-medium text-blue-600 hover:text-blue-500" href="/signup.jsp">Login</a>
+                <a class="font-medium text-blue-600 hover:text-blue-500" href="signup.jsp">Login</a>
             </p>
         </div>
     </main>
+
+    <script src="assets/scripts/session.js"></script>
 </div>
 </body>
 </html>

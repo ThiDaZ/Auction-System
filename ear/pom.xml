@@ -65,6 +65,7 @@
                             <groupId>lk.thidas.ee</groupId>
                             <artifactId>web</artifactId>
                             <contextRoot>/auction</contextRoot>
+                            <bundleFileName>web.war</bundleFileName>
                         </webModule>
                     </modules>
                 </configuration>
