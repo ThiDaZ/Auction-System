@@ -1,0 +1,59 @@
+package lk.thidas.ee.core.dto;
+
+import com.google.gson.annotations.Expose;
+
+import java.io.Serializable;
+
+public class User_DTO implements Serializable {
+    private String username;
+
+    @Expose
+    private String email;
+
+    @Expose
+    private String password;
+
+    private String confirmPassword;
+
+    public User_DTO() {
+    }
+
+    public User_DTO(String username, String email, String password, String confirmPassword) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+}
