@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 </head>
-<body>
+<body >
 <div class="min-h-screen flex flex-col bg-slate-50" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
 
     <%@ include file="/components/header.jsp" %>

@@ -1,14 +1,52 @@
 async function loadUser() {
     try {
         const response = await fetch('checkSession');
-        if (!response.ok) {
+        if (response.ok) {
             const json = await response.json();
-            console.log(json);
+            if (json.success) {
+
+                const currentPage = window.location.pathname;
+                if (currentPage.endsWith('login.jsp') || currentPage.endsWith('signup.jsp')) {
+                    window.location.href = 'index.jsp';
+                    return;
+                }
+
+                console.log(json);
+                // Hide login button
+                const loginButtonWrapper = document.getElementById("loginButtonWrapper");
+                if (loginButtonWrapper) {
+                    loginButtonWrapper.classList.add("hidden");
+                }
+                // Show user navigation
+                const userNavWrapper = document.getElementById("userNavWrapper");
+                const username = document.getElementById("usernameDisplay");
+                if (userNavWrapper) {
+                    userNavWrapper.classList.remove("hidden");
+                    username.textContent = json.user.username;
+                }
+            } else {
+                console.log(json);
+                // Show login button
+                const loginButtonWrapper = document.getElementById("loginButtonWrapper");
+                if (loginButtonWrapper) {
+                    loginButtonWrapper.classList.remove("hidden");
+                }
+                // Hide user navigation
+                const userNavWrapper = document.getElementById("userNavWrapper");
+                if (userNavWrapper) {
+                    userNavWrapper.classList.add("hidden");
+                }
+            }
         }
     } catch (e) {
         console.log(e);
     }
 }
+
+// Add event listener to call loadUser when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    loadUser();
+});
 
 async function login() {
     const email = document.getElementById('email').value;

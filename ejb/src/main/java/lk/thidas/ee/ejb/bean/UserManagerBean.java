@@ -1,6 +1,5 @@
 package lk.thidas.ee.ejb.bean;
 
-import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.ejb.Stateless;
 import lk.thidas.ee.core.model.User;
