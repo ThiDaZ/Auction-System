@@ -32,7 +32,7 @@
       }
     </style>
   </head>
-  <body class="font-plus-jakarta-sans bg-gray-50 text-gray-900" onload="getAuction()">
+  <body onload="getAuction()" class="font-plus-jakarta-sans bg-gray-50 text-gray-900">
     <div class="relative flex min-h-screen flex-col">
       <%@ include file="/components/header.jsp" %>
       <main class="container mx-auto flex-1 px-4 py-8 sm:px-6 lg:px-8">
@@ -132,7 +132,7 @@
                   </p>
                 </div>
                 <div class="mt-8">
-                  <h2 class="text-sm font-medium text-gray-600">
+                  <h2 id="time-status" class="text-sm font-medium text-gray-600">
                     Time Remaining
                   </h2>
                   <div class="mt-2 grid grid-cols-4 gap-2 text-center">

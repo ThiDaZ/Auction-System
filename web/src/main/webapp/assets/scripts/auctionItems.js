@@ -75,10 +75,9 @@ function generateCard(auctions) {
         if (timeContentSpan) {
             countdownTargets.push({timeContentSpan, startTime, endTime});
         }
-
-        startCountdownUpdater(countdownTargets);
-
     }
+
+    startCountdownUpdater(countdownTargets);
 
 }
 
@@ -110,11 +109,11 @@ function getTimeTagInfo(startTime, endTime) {
 
     let html;
 
-    if(label === "Starts in:"){
-        html = `${label} <strong class="text-gary-700">${duration}</strong>`;
-    }else if (label === "Ends in:"){
+    if (label === "Starts in:") {
+        html = `${label} <strong class="text-gray-700">${duration}</strong>`;
+    } else if (label === "Ends in:") {
         html = `${label} <strong class="text-red-700">${duration}</strong>`;
-    }else{
+    } else {
         html = `<strong class="text-gray-700">${label}</strong>`;
     }
 
