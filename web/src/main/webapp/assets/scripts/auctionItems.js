@@ -63,6 +63,7 @@ function generateCard(auctions) {
                 </div>
 
                 <button
+                    onclick="window.location.href='single-auction.jsp?id=${id}'"
                     class="mt-6 w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-blue-600 text-white text-sm font-semibold leading-normal tracking-wide shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
                     <span class="truncate">View Details</span>
                 </button>

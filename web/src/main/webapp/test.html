@@ -1,503 +1,500 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Smartphone X Pro - BidHub</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
     <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
     <link
       as="style"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900"
       onload="this.rel='stylesheet'"
       rel="stylesheet"
     />
-    <title>Stitch Design</title>
-    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-      rel="stylesheet"
-    />
+    <style>
+      .font-plus-jakarta-sans {
+        font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;
+      }
+      .primary-color {
+        color: #0c7ff2;
+      }
+      .bg-primary-color {
+        background-color: #0c7ff2;
+      }
+      .border-primary-color {
+        border-color: #0c7ff2;
+      }
+      .ring-primary-color:focus {
+        --tw-ring-color: #0c7ff2;
+      }
+    </style>
   </head>
-  <body class="bg-white">
-    <div
-      class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden"
-      style="font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif"
-    >
-      <div class="layout-container flex h-full grow flex-col">
-        <header
-          class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray-200 px-10 py-4 shadow-sm"
+  <body class="font-plus-jakarta-sans bg-gray-50 text-gray-900">
+    <div class="relative flex min-h-screen flex-col">
+      <header class="sticky top-0 z-50 bg-white shadow-sm">
+        <div
+          class="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3"
         >
-          <div class="flex items-center gap-10">
-            <div class="flex items-center gap-3 text-blue-600">
+          <div class="flex items-center gap-8">
+            <a class="flex items-center gap-2 text-gray-900" href="#">
               <svg
-                class="h-8 w-8"
+                class="h-8 w-8 text-primary-color"
                 fill="none"
                 viewBox="0 0 48 48"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z"
-                  fill="currentColor"
-                ></path>
-                <path
                   clip-rule="evenodd"
-                  d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z"
+                  d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z"
                   fill="currentColor"
                   fill-rule="evenodd"
                 ></path>
               </svg>
-              <h2
-                class="text-xl font-bold leading-tight tracking-[-0.015em] text-gray-900"
-              >
-                BidWise
-              </h2>
-            </div>
-            <nav class="flex items-center gap-6">
+              <h1 class="text-xl font-bold leading-tight tracking-[-0.015em]">
+                BidHub
+              </h1>
+            </a>
+            <nav class="hidden md:flex items-center gap-6">
               <a
-                class="text-sm font-medium leading-normal text-gray-700 hover:text-blue-600 transition-colors"
+                class="text-sm font-medium text-gray-700 hover:text-primary-color transition-colors"
                 href="#"
                 >Home</a
               >
               <a
-                class="text-sm font-medium leading-normal text-gray-700 hover:text-blue-600 transition-colors"
+                class="text-sm font-medium text-gray-700 hover:text-primary-color transition-colors"
                 href="#"
                 >Categories</a
               >
               <a
-                class="text-sm font-medium leading-normal text-gray-700 hover:text-blue-600 transition-colors"
+                class="text-sm font-medium text-gray-700 hover:text-primary-color transition-colors"
                 href="#"
-                >How it Works</a
+                >My Bids</a
               >
               <a
-                class="text-sm font-medium leading-normal text-gray-700 hover:text-blue-600 transition-colors"
+                class="text-sm font-medium text-gray-700 hover:text-primary-color transition-colors"
                 href="#"
-                >Contact</a
+                >Watchlist</a
               >
             </nav>
           </div>
-          <div class="flex flex-1 justify-end gap-4 items-center">
-  
-            <div class="relative" x-data="{ open: false }">
-              <button
-                @click="open = !open"
-                class="flex items-center gap-2 cursor-pointer"
-              >
-                <img
-                  alt="User Avatar"
-                  class="h-8 w-8 rounded-full object-cover"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC556dpIDDWuJEZGlseIhRGeBB4SGIE4neSMfPzU2z7ER1SOqt2vfyLc6hkNRvyF1njsPqv6Bz1xTQQKgMdrC8SuOefQcvViYgtlGbHkLZSjUZPOJ7uGcD8dJDW8sGzSValA5Per4q2H48Zq9WlN757apW58BCG_UVz3rCsQZ_jNT7z5oVBFxm32vClt822yEGmrnNzrA2mKXeCJ2pR98bT6HgfVXtrmCFgDzdSnn6rjALJmaZkD-hdn5bPjZxwCevWE_XaoXP0a4A"
-                />
-                <span class="text-sm font-medium text-gray-700">John Doe</span>
-                <span
-                  :class="{'rotate-180': open}"
-                  class="material-symbols-outlined text-gray-500 transition-transform duration-200"
-                  >expand_more</span
-                >
-              </button>
+          <div class="flex items-center gap-4">
+            <div class="relative hidden sm:block">
               <div
-                @click.away="open = false"
-                class="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
-                style="display: none"
-                x-show="open"
-                x-transition:enter="transition ease-out duration-100"
-                x-transition:enter-end="transform opacity-100 scale-100"
-                x-transition:enter-start="transform opacity-0 scale-95"
-                x-transition:leave="transition ease-in duration-75"
-                x-transition:leave-end="transform opacity-0 scale-95"
-                x-transition:leave-start="transform opacity-100 scale-100"
+                class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
               >
-                <div class="py-1" >
-                  <a
-                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
-                    href="#"
-                    id="user-menu-item-0"
-                    role="menuitem"
-                    tabindex="-1"
-                    >Account</a
-                  >
-                  <a
-                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
-                    href="#"
-                    id="user-menu-item-1"
-                    role="menuitem"
-                    tabindex="-1"
-                    >Logout</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-        <main
-          class="px-4 sm:px-6 lg:px-10 flex flex-1 justify-center py-8 bg-gray-50"
-        >
-          <div class="layout-content-container flex flex-col w-full max-w-6xl">
-            <div class="px-4 py-6">
-              <label
-                class="flex flex-col min-w-40 h-12 w-full max-w-xl mx-auto relative"
-              >
-                <div
-                  class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
-                  data-icon="MagnifyingGlass"
-                  data-size="24px"
-                  data-weight="regular"
+                <svg
+                  aria-hidden="true"
+                  class="h-5 w-5 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
+                  <path
+                    clip-rule="evenodd"
+                    d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                class="block w-full rounded-md border-gray-300 bg-gray-50 py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:border-primary-color focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary-color"
+                placeholder="Search auctions..."
+                type="search"
+              />
+            </div>
+            <button
+              class="relative rounded-full p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-2"
+              type="button"
+            >
+              <span class="sr-only">View notifications</span>
+              <svg
+                aria-hidden="true"
+                class="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </button>
+            <div
+              class="h-10 w-10 rounded-full bg-cover bg-center bg-no-repeat"
+              style="
+                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzRnGQ1p6LIUal86kG1gHFBoDNUSaWRkeFcQN1awF6UqImOSiaEC4Mb26f_b4wv3EbBUQQ-U4HDGjGMHijUh-RQ3P6vFWRgzFODT4QYLfhsmBl5sEEFGdwToQR9CEr15s6aeiiZ23F7ZaSJ5H5BzNDlAdlz2sMqQJzm5Hnc1I7KnvH3FikI4OSc5jy03uGRMGRolcBd2s_CyMk1L2z5fNeCgKpguMHewBtt5mYw7x2JBWPqBnmIaWq5XNEfQXb3zCQM19NM0AiWds');
+              "
+            ></div>
+          </div>
+        </div>
+      </header>
+      <main class="container mx-auto flex-1 px-4 py-8 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="mb-4">
+            <nav aria-label="Breadcrumb">
+              <ol class="flex items-center space-x-2 text-sm" role="list">
+                <li>
+                  <a
+                    class="font-medium text-gray-500 hover:text-gray-700"
+                    href="#"
+                    >Electronics</a
+                  >
+                </li>
+                <li>
                   <svg
+                    aria-hidden="true"
+                    class="h-5 w-5 flex-shrink-0 text-gray-300"
                     fill="currentColor"
-                    height="24px"
-                    viewBox="0 0 256 256"
-                    width="24px"
-                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
                   >
                     <path
-                      d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+                      clip-rule="evenodd"
+                      d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                      fill-rule="evenodd"
                     ></path>
                   </svg>
-                </div>
-                <input
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-300 bg-white h-full placeholder:text-gray-500 pl-12 pr-4 py-3 text-base font-normal leading-normal shadow-sm"
-                  placeholder="Search for items..."
-                  value=""
+                </li>
+                <li>
+                  <span class="font-medium text-gray-800">Smartphones</span>
+                </li>
+              </ol>
+            </nav>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <div
+                class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg shadow-lg"
+              >
+                <img
+                  alt="Smartphone X Pro"
+                  class="h-full w-full object-cover object-center"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWAdFxBj-mf2lS2n9F66iWPZeEi8m0cvnVZ8Jyj4Fj8Z5Smgt34L2N8uYsMnD1wq1BD0ZCzwwuuK_k6mAew8UwW8ExBwF3mjfIah3tOHnyEpY_cZLOfHgSnaJSHwMjXkNT1CU_BXHeA_ARyq6B0ev1oB90tKF2U7yotQnIdygGeO3IakZM1AoysVR707iAX9WjyQ3_o9DSMRC40Jy33T2GrvaopkAXUj-JDIuOKijMQE9BDdxuKX7ong3AlIuhMAOXAaqiOCkk-yM"
                 />
-              </label>
+              </div>
             </div>
-            <h2
-              class="text-gray-900 text-2xl font-bold leading-tight tracking-tight px-4 pb-4 pt-6"
-            >
-              Live Auctions
-            </h2>
-            <div
-              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4"
-            >
-              <div class="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden transition-shadow hover:shadow-xl">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                  style="
-                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDG56bDOL29Azp57JQ4j7CGS8OSDtQW5DR7l7qVvrwP1i0IfSz9J9NPWHsAzagOqmoU2OHym5PmNtxK3gNWFeCs-JB-LE7ecXXhbsuh8JeA3UTHW-yXTz406JfQ70vjHn3vSHgY7jHnNpsbaqRiVo3yI3O3ywhPcxCmVRRbwyySb2GgxJm0Ys2Y-dUpeQCpb-kvGdywRHrKnFbchZa-O8TdIkZ1Y_Wq02v_bwuSQkUEFYiylyEhXnVFfe4MQAGMfRPFxGTWTv5c_mM');
-                  "
-                ></div>
-                <div class="p-4 flex flex-col flex-grow">
-                  <h3 class="text-gray-800 text-lg font-semibold leading-tight">
-                    Vintage Leather Jacket
-                  </h3>
-                  <p
-                    class="text-gray-600 text-sm font-normal leading-normal mt-1 flex-grow"
-                  >
-                    Stylish leather jacket, perfect for any occasion.
-                  </p>
-                  <div class="mt-4 space-y-2">
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >attach_money</span
-                      >
-                      <span
-                        >Min. Bid:
-                        <strong class="text-gray-700">$50.00</strong></span
-                      >
+            <div class="flex flex-col justify-between">
+              <div>
+                <h1
+                  class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                >
+                  Smartphone X Pro
+                </h1>
+                <p class="mt-4 text-gray-700">
+                  The Smartphone X Pro is a high-end device with a stunning
+                  display, powerful processor, and advanced camera system. It
+                  features a 6.7-inch OLED display with a 120Hz refresh rate, a
+                  Snapdragon 8 Gen 2 chip, and a triple-lens camera setup with a
+                  50MP main sensor. The phone also supports fast charging and
+                  has a long-lasting battery.
+                </p>
+                <div class="mt-8 p-6 bg-white rounded-lg shadow-md">
+                  <div class="flex flex-col gap-4">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <h2 class="text-sm font-medium text-gray-600">
+                          Highest Bid
+                        </h2>
+                        <p
+                          class="mt-1 text-5xl font-extrabold text-primary-color"
+                        >
+                          $450
+                        </p>
+                      </div>
+                      <div class="text-right">
+                        <h2 class="text-sm font-medium text-gray-600">
+                          Highest Bidder
+                        </h2>
+                        <div class="flex items-center gap-2 mt-1">
+                          <img
+                            alt="Bidder Avatar"
+                            class="h-10 w-10 rounded-full"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmkIgPNfYZdvPOCiFDvhzUzGJaAOWUuN0EzuEDUFLdp9HuZKeNeAnyEieXtMW7eBP3QYHw0A-soyB7FWokkaSU10Y-oK5MXiTrlmZc3y8_fOFgctVjWrk5XjA6wxiS-3KCQDEInzDZgHPNLRKu-bCZtbDJakEmN0h6iToY6-DoFHNVBpJxwwhHfNbylNNKDBkfy3gZSUzPULrf7InuY6E5_F89E5GvyUW6EHTN96LqJZEUKPFemvMQA2zcKtCC8fUNAKm9VkdtkXI"
+                          />
+                          <p class="text-xl font-bold text-gray-800">John D.</p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >timer</span
-                      >
-                      <span
-                        >Ends in:
-                        <strong class="text-gray-700">2d 15h</strong></span
-                      >
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >gavel</span
-                      >
-                      <span
-                        >Bids: <strong class="text-gray-700">12</strong></span
-                      >
+                    <div class="border-t border-gray-200 pt-4">
+                      <h2 class="text-sm font-medium text-gray-600">
+                        Your Bid
+                      </h2>
+                      <p class="mt-1 text-3xl font-bold text-green-600">$420</p>
+                      <p class="mt-1 text-xs text-gray-500">
+                        You are not the highest bidder.
+                      </p>
                     </div>
                   </div>
-                  <button
-                    class="mt-6 w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-blue-600 text-white text-sm font-semibold leading-normal tracking-wide shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
+                  <p class="mt-6 text-sm text-gray-500">
+                    Minimum bid increment: $5
+                  </p>
+                </div>
+                <div class="mt-8">
+                  <h2 class="text-sm font-medium text-gray-600">
+                    Time Remaining
+                  </h2>
+                  <div class="mt-2 grid grid-cols-4 gap-2 text-center">
+                    <div>
+                      <div
+                        class="rounded-md bg-gray-100 py-3 px-2 text-2xl font-bold text-gray-900"
+                      >
+                        2
+                      </div>
+                      <div class="mt-1 text-xs text-gray-500">Days</div>
+                    </div>
+                    <div>
+                      <div
+                        class="rounded-md bg-gray-100 py-3 px-2 text-2xl font-bold text-gray-900"
+                      >
+                        14
+                      </div>
+                      <div class="mt-1 text-xs text-gray-500">Hours</div>
+                    </div>
+                    <div>
+                      <div
+                        class="rounded-md bg-gray-100 py-3 px-2 text-2xl font-bold text-gray-900"
+                      >
+                        30
+                      </div>
+                      <div class="mt-1 text-xs text-gray-500">Minutes</div>
+                    </div>
+                    <div>
+                      <div
+                        class="rounded-md bg-gray-100 py-3 px-2 text-2xl font-bold text-gray-900"
+                      >
+                        15
+                      </div>
+                      <div class="mt-1 text-xs text-gray-500">Seconds</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div
-                class="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden transition-shadow hover:shadow-xl"
-              >
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                  style="
-                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACZ9MuaSJv_ZVg37ba0OT16GJlGUqIqHzfIyaMbODxNiAZuaSixeIBu8I0VtnUz8odLLTPPVeDYA0NtkIsWrQ3S0fVxt9PrrV95wcgYiaNH5JmYIt1An8au5Dk61SjUUprpcuI-fvc8tU2nae1FtH_dN9L7KdIEGU4nhqTOBWK-_gEkNSB5-84OkgXGa6XMeZNH4j0Iex2F9L7AksOZ8mKdYYmLvMtdB7MDH3J3O_jjsB4nr93wZ8PVb70Ub9EOJHZinjyF9_sN3g');
-                  "
-                ></div>
-                <div class="p-4 flex flex-col flex-grow">
-                  <h3 class="text-gray-800 text-lg font-semibold leading-tight">
-                    Antique Pocket Watch
-                  </h3>
-                  <p
-                    class="text-gray-600 text-sm font-normal leading-normal mt-1 flex-grow"
-                  >
-                    Elegant pocket watch, a timeless piece.
-                  </p>
-                  <div class="mt-4 space-y-2">
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >attach_money</span
+
+              <div class="mt-10">
+                <form>
+                  <div class="grid grid-cols-3 gap-4 items-end">
+                    <div class="col-span-2">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        for="bid-amount"
+                        >Your Bid Amount</label
                       >
-                      <span
-                        >Min. Bid:
-                        <strong class="text-gray-700">$120.00</strong></span
-                      >
+                      <div class="mt-1 relative rounded-md shadow-sm">
+                        <div
+                          class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                        >
+                          <span class="text-gray-500 sm:text-sm">$</span>
+                        </div>
+                        <input
+                          class="focus:ring-primary-color focus:border-primary-color block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+                          id="bid-amount"
+                          min="455"
+                          name="bid-amount"
+                          placeholder="455"
+                          step="1"
+                          type="number"
+                        />
+                      </div>
                     </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >timer</span
-                      >
-                      <span
-                        >Ends in:
-                        <strong class="text-gray-700">1d 8h</strong></span
-                      >
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >gavel</span
-                      >
-                      <span
-                        >Bids: <strong class="text-gray-700">5</strong></span
-                      >
-                    </div>
+                    <button
+                      class="flex w-full items-center justify-center rounded-md border border-transparent bg-primary-color px-6 py-3 text-base font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-2 transition-colors"
+                      type="submit"
+                    >
+                      Place Bid
+                    </button>
                   </div>
-                  <button
-                    class="mt-6 w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-blue-600 text-white text-sm font-semibold leading-normal tracking-wide shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-              </div>
-              <div
-                class="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden transition-shadow hover:shadow-xl"
-              >
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                  style="
-                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWrFtwkIlmaURAiRSbBlLUEZ5JnQ9PLdR1ILYCFwNb8wcZ9jdNryXJGw7V1LyETOBuCrnD_ebAxl34tJHXzHKbvkOwOPRl_CYdIeWmHHOoPjHMZGvrEIbL1aec4Paj_p2w_wKTtX8vFWMhF05TWSCml5zZyzmyXs66QQ7LLr-DrdqbvfewIZ2tBAVAA4pEq4qyHjmXc7eKWHFGkaf2ldm7RiXMpjUWtCqxZ_RPchL8hlwDcltYn8_L_zMnWrWb8u8pcQ9VfX00gmA');
-                  "
-                ></div>
-                <div class="p-4 flex flex-col flex-grow">
-                  <h3 class="text-gray-800 text-lg font-semibold leading-tight">
-                    Limited Edition Sneakers
-                  </h3>
-                  <p
-                    class="text-gray-600 text-sm font-normal leading-normal mt-1 flex-grow"
-                  >
-                    Exclusive sneakers, a collector's dream.
-                  </p>
-                  <div class="mt-4 space-y-2">
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >attach_money</span
-                      >
-                      <span
-                        >Min. Bid:
-                        <strong class="text-gray-700">$250.00</strong></span
-                      >
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >timer</span
-                      >
-                      <span
-                        >Ends in:
-                        <strong class="text-gray-700">5d 2h</strong></span
-                      >
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >gavel</span
-                      >
-                      <span
-                        >Bids: <strong class="text-gray-700">22</strong></span
-                      >
-                    </div>
+                  <div class="mt-4 grid grid-cols-3 gap-2">
+                    <button
+                      class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-1"
+                      type="button"
+                    >
+                      Quick Bid: $455
+                    </button>
+                    <button
+                      class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-1"
+                      type="button"
+                    >
+                      Quick Bid: $460
+                    </button>
+                    <button
+                      class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-1"
+                      type="button"
+                    >
+                      Quick Bid: $470
+                    </button>
                   </div>
-                  <button
-                    class="mt-6 w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-blue-600 text-white text-sm font-semibold leading-normal tracking-wide shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-              </div>
-              <div
-                class="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden transition-shadow hover:shadow-xl"
-              >
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                  style="
-                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDmDYJ7LauuAxr2UX6NsibqbJJssK3G0HuKSz5d0QkOvsGNG0-nYEfsgcdIcycbwXXOi_hZ1IUVIoXC5_G-oQQh1EQW6u458bMTv5veoZs4W8YPkXr2pmMlkn3FdzvCOB_MEjfTE_viH9SS221qyeWhG3Tx2ZHf2-F78ogzC8jx5OjQ00HO17u5vuYTY8r_0pOKulaN3ChrRaC3reETojxPCHtx-Y828YrwLHJ5Rc0nyMS779_gYW0tCZdZzvtbRTmXl82LXsRLYt0');
-                  "
-                ></div>
-                <div class="p-4 flex flex-col flex-grow">
-                  <h3 class="text-gray-800 text-lg font-semibold leading-tight">
-                    Designer Handbag
-                  </h3>
-                  <p
-                    class="text-gray-600 text-sm font-normal leading-normal mt-1 flex-grow"
-                  >
-                    Chic handbag, a fashion statement.
-                  </p>
-                  <div class="mt-4 space-y-2">
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >attach_money</span
-                      >
-                      <span
-                        >Min. Bid:
-                        <strong class="text-gray-700">$300.00</strong></span
-                      >
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >timer</span
-                      >
-                      <span
-                        >Ends in:
-                        <strong class="text-gray-700">3d 10h</strong></span
-                      >
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >gavel</span
-                      >
-                      <span
-                        >Bids: <strong class="text-gray-700">8</strong></span
-                      >
-                    </div>
-                  </div>
-                  <button
-                    class="mt-6 w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-blue-600 text-white text-sm font-semibold leading-normal tracking-wide shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-              </div>
-              <div
-                class="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden transition-shadow hover:shadow-xl"
-              >
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                  style="
-                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7WvFvxlhCh2errCD5T8oZ-bivNiwEM8ByyH5ThIL_cprDDnmoW5B4I2XjoTuv1BK9Fus_dOGdZHRcOJpKK1g-FyXQ9mKahehof-LYJiVBgDjBfDm0AFh4HjPCbJev5DNCSdPaGlJqaNBpa1OMBhxBo8S3V-voUGIAPT_F7Jr2gK93PShmKFRSIXu80hDIaj1cO8oZ5v6qurYNuJCKm4yVirZ6IcH6-ZWHD-zLcu7g2WwRGy92DJgIHlO2lposXHKAS24xO_2e56g');
-                  "
-                ></div>
-                <div class="p-4 flex flex-col flex-grow">
-                  <h3 class="text-gray-800 text-lg font-semibold leading-tight">
-                    Classic Car Model
-                  </h3>
-                  <p
-                    class="text-gray-600 text-sm font-normal leading-normal mt-1 flex-grow"
-                  >
-                    Detailed car model, a collector's item.
-                  </p>
-                  <div class="mt-4 space-y-2">
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >attach_money</span
-                      >
-                      <span
-                        >Min. Bid:
-                        <strong class="text-gray-700">$80.00</strong></span
-                      >
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >timer</span
-                      >
-                      <span
-                        >Ends in:
-                        <strong class="text-gray-700">4d 5h</strong></span
-                      >
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >gavel</span
-                      >
-                      <span
-                        >Bids: <strong class="text-gray-700">15</strong></span
-                      >
-                    </div>
-                  </div>
-                  <button
-                    class="mt-6 w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-blue-600 text-white text-sm font-semibold leading-normal tracking-wide shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-              </div>
-              <div
-                class="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden transition-shadow hover:shadow-xl"
-              >
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                  style="
-                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA1l7oUGe28VSX_orR5uF06W9nMsbUtQMD_JtUBgbMHPa8z8UlkXX_yNiU6m-yuEChDA3P8vo2aeBJxrz-Q7PtGF401UmXU0nwZ0UfgoMpHZIxLgb4DK4ibxmxtFe8S61QiDEDUxlipk-xxhn7d2eAMZs52My7gHYAaazfDPOOUXB4Hhs6wXlItWp2_Lap8snMxRJG3_7Ux7z5tAGKnXY21tP-R1Ms6wICd4_DV3rzSTKLoGfEqpeXdlFCeHDtBKT5IsR-R8pE32YU');
-                  "
-                ></div>
-                <div class="p-4 flex flex-col flex-grow">
-                  <h3 class="text-gray-800 text-lg font-semibold leading-tight">
-                    Rare Coin Collection
-                  </h3>
-                  <p
-                    class="text-gray-600 text-sm font-normal leading-normal mt-1 flex-grow"
-                  >
-                    Valuable coin collection, a rare find.
-                  </p>
-                  <div class="mt-4 space-y-2">
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >attach_money</span
-                      >
-                      <span
-                        >Min. Bid:
-                        <strong class="text-gray-700">$500.00</strong></span
-                      >
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >timer</span
-                      >
-                      <span
-                        >Ends in:
-                        <strong class="text-gray-700">7d 0h</strong></span
-                      >
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <span class="material-symbols-outlined text-base mr-2"
-                        >gavel</span
-                      >
-                      <span
-                        >Bids: <strong class="text-gray-700">3</strong></span
-                      >
-                    </div>
-                  </div>
-                  <button
-                    class="mt-6 w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-blue-600 text-white text-sm font-semibold leading-normal tracking-wide shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
+                </form>
               </div>
             </div>
           </div>
-        </main>
-        <footer
-          class="py-8 px-10 text-center border-t border-gray-200 bg-white"
+          <div class="mt-12 bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">
+              Bidding History
+            </h2>
+            <div
+              class="max-h-80 overflow-y-auto custom-scrollbar space-y-4 pr-2"
+            >
+              <div
+                class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"
+              >
+                <div class="flex items-center">
+                  <img
+                    alt="Bidder Avatar"
+                    class="h-10 w-10 rounded-full mr-4"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmkIgPNfYZdvPOCiFDvhzUzGJaAOWUuN0EzuEDUFLdp9HuZKeNeAnyEieXtMW7eBP3QYHw0A-soyB7FWokkaSU10Y-oK5MXiTrlmZc3y8_fOFgctVjWrk5XjA6wxiS-3KCQDEInzDZgHPNLRKu-bCZtbDJakEmN0h6iToY6-DoFHNVBpJxwwhHfNbylNNKDBkfy3gZSUzPULrf7InuY6E5_F89E5GvyUW6EHTN96LqJZEUKPFemvMQA2zcKtCC8fUNAKm9VkdtkXI"
+                  />
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">John D.</p>
+                    <p class="text-xs text-gray-500">2 hours ago</p>
+                  </div>
+                </div>
+                <p class="text-lg font-bold text-primary-color">$450</p>
+              </div>
+              <div
+                class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"
+              >
+                <div class="flex items-center">
+                  <img
+                    alt="Bidder Avatar"
+                    class="h-10 w-10 rounded-full mr-4"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0aQ7ywJwNOwimvhqnmOEKZEZ9TXH2GHdZh0FmkP70H2wkqODEIy3oOhqrGvupNuQJeBxicnu6LZXf2l0xDQYLplQMvP3hNlcPC1JDA8lSI1rla3WIosh9Q7QQC1iiSiSzA7Gom06uSoz9ZknoFV8GARPFB6FvlmHVM3fR5IVLjVMnOyCP3c-a4xootETXqwjoPJ71roYkWGuut6OD_jJk2gGeDRHXBmd7IcZQXxFhF-ZBwtbprmZy9VESaq2CGqN6NWQlbaiFQVw"
+                  />
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">
+                      Jane S. (You)
+                    </p>
+                    <p class="text-xs text-gray-500">5 hours ago</p>
+                  </div>
+                </div>
+                <p class="text-lg font-semibold text-green-600">$420</p>
+              </div>
+              <div
+                class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"
+              >
+                <div class="flex items-center">
+                  <img
+                    alt="Bidder Avatar"
+                    class="h-10 w-10 rounded-full mr-4"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"
+                  />
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">Mike B.</p>
+                    <p class="text-xs text-gray-500">1 day ago</p>
+                  </div>
+                </div>
+                <p class="text-lg font-semibold text-gray-700">$400</p>
+              </div>
+              <div
+                class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"
+              >
+                <div class="flex items-center">
+                  <img
+                    alt="Bidder Avatar"
+                    class="h-10 w-10 rounded-full mr-4"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"
+                  />
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">Mike B.</p>
+                    <p class="text-xs text-gray-500">1 day ago</p>
+                  </div>
+                </div>
+                <p class="text-lg font-semibold text-gray-700">$400</p>
+              </div>
+              <div
+                class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"
+              >
+                <div class="flex items-center">
+                  <img
+                    alt="Bidder Avatar"
+                    class="h-10 w-10 rounded-full mr-4"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"
+                  />
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">Mike B.</p>
+                    <p class="text-xs text-gray-500">1 day ago</p>
+                  </div>
+                </div>
+                <p class="text-lg font-semibold text-gray-700">$400</p>
+              </div>
+              <div
+                class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"
+              >
+                <div class="flex items-center">
+                  <img
+                    alt="Bidder Avatar"
+                    class="h-10 w-10 rounded-full mr-4"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"
+                  />
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">Mike B.</p>
+                    <p class="text-xs text-gray-500">1 day ago</p>
+                  </div>
+                </div>
+                <p class="text-lg font-semibold text-gray-700">$400</p>
+              </div>
+              <div
+                class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"
+              >
+                <div class="flex items-center">
+                  <img
+                    alt="Bidder Avatar"
+                    class="h-10 w-10 rounded-full mr-4"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"
+                  />
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">Mike B.</p>
+                    <p class="text-xs text-gray-500">1 day ago</p>
+                  </div>
+                </div>
+                <p class="text-lg font-semibold text-gray-700">$400</p>
+              </div>
+              <div
+                class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"
+              >
+                <div class="flex items-center">
+                  <img
+                    alt="Bidder Avatar"
+                    class="h-10 w-10 rounded-full mr-4"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"
+                  />
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">Mike B.</p>
+                    <p class="text-xs text-gray-500">1 day ago</p>
+                  </div>
+                </div>
+                <p class="text-lg font-semibold text-gray-700">$400</p>
+              </div>
+              <div
+                class="flex items-center justify-between pb-4 last:border-b-0 last:pb-0"
+              >
+                <div class="flex items-center">
+                  <img
+                    alt="Bidder Avatar"
+                    class="h-10 w-10 rounded-full mr-4"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0W5BQJxnyBXrb3aLLXx4W7Qm0PXnoB3RiuyeISHMVVi_187sE3IpE0IiJg4Pvq6Pt4XUbqjhTWgynt5WgNltCqLWP8gbqRX6m1Hxp_jKVzpqFawEyS_zHGkUngf-JtCDL01VV3Fw-L5mjdsofQYXHH5CTFne6bgfVBY18IZDsC2M3ipWJqSFYyIFVqud9O1L6Nk3r3kliCGz63FXnoMRxyYIOLnJ3YhwVkiUSWAUPvSRuUT-VXrtBU9oARNBGgcgXTvPlhuRfsqY"
+                  />
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">Sarah L.</p>
+                    <p class="text-xs text-gray-500">2 days ago</p>
+                  </div>
+                </div>
+                <p class="text-lg font-semibold text-gray-700">$380</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="bg-gray-100 border-t border-gray-200">
+        <div
+          class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-sm text-gray-500"
         >
-          <p class="text-sm text-gray-600">
-            © 2024 BidWise. All rights reserved.
-          </p>
-        </footer>
-      </div>
+          <p>© 2024 BidHub. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
-    <script
-      defer=""
-      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
-    ></script>
   </body>
 </html>
