@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.thidas.ee.core.dto.Response_DTO;
 import lk.thidas.ee.core.dto.User_DTO;
-import lk.thidas.ee.ejb.bean.UserManagerBean;
+import lk.thidas.ee.ejb.remote.UserService;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import java.io.IOException;
 public class SignUpServlet extends HttpServlet {
 
     @EJB
-    private UserManagerBean userManagerBean;
+    private UserService userManager;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,7 +29,7 @@ public class SignUpServlet extends HttpServlet {
         System.out.println(user_dto.getEmail() + " " + user_dto.getPassword() + " " + user_dto.getUsername() + " " + user_dto.getConfirmPassword());
 
         if (user_dto.getPassword().equals(user_dto.getConfirmPassword())) {
-            if (userManagerBean.registerUser(user_dto.getUsername(), user_dto.getEmail(), user_dto.getPassword())) {
+            if (userManager.registerUser(user_dto.getUsername(), user_dto.getEmail(), user_dto.getPassword())) {
                 response.setSuccess(true);
                 response.setContent("You have been registered successfully, login again.");
             } else {

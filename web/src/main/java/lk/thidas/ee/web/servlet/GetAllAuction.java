@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.thidas.ee.core.dto.Response_DTO;
 import lk.thidas.ee.core.model.AuctionItem;
-import lk.thidas.ee.ejb.bean.AuctionManagerBean;
+import lk.thidas.ee.ejb.remote.AuctionService;
 
 import java.io.IOException;
 import java.util.Map;
@@ -18,16 +18,17 @@ import java.util.Map;
 public class GetAllAuction extends HttpServlet {
 
     @EJB
-    private AuctionManagerBean auctionManagerBean;
+    private AuctionService auctionService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Gson gson = new Gson();
         Response_DTO responseDto = new Response_DTO();
+        System.out.println("getAllAuction");
 
 
-        Map<String, AuctionItem> auctionItems = auctionManagerBean.getAllAuctionItems();
+        Map<String, AuctionItem> auctionItems = auctionService.getAllAuctionItems();
 
         if (auctionItems == null || auctionItems.isEmpty()) {
             responseDto.setSuccess(false);
