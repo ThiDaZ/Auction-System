@@ -1,6 +1,7 @@
 package lk.thidas.ee.ejb.bean;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.ejb.LocalBean;
 import jakarta.ejb.Startup;
 import jakarta.ejb.Stateless;
 import lk.thidas.ee.core.model.User;
@@ -11,7 +12,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Startup
 @Stateless
-public class UserManagerBean{
+@LocalBean
+public class UserManagerBean implements UserService {
     private Map<String, User> users = new ConcurrentHashMap<>();
 
     @PostConstruct
@@ -31,7 +33,6 @@ public class UserManagerBean{
         System.out.println("User registered successfully :" + email + " " + password + " " + username);
         return true;
     }
-
 
     public User login(String email, String password) {
         if (users.containsKey(email)) {
