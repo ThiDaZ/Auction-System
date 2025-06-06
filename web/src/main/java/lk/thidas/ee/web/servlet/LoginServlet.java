@@ -11,14 +11,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import lk.thidas.ee.core.dto.Response_DTO;
 import lk.thidas.ee.core.dto.User_DTO;
 import lk.thidas.ee.core.model.User;
-import lk.thidas.ee.ejb.bean.UserManagerBean;
+import lk.thidas.ee.ejb.remote.UserService;
 
 import java.io.IOException;
 
 @WebServlet("/signIn")
 public class LoginServlet extends HttpServlet {
     @EJB
-    private UserManagerBean userManagerBean;
+    private UserService userManager;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         User_DTO user_dto = gson.fromJson(req.getReader(), User_DTO.class);
 
-        User user = userManagerBean.login(user_dto.getEmail(), user_dto.getPassword());
+        User user = userManager.login(user_dto.getEmail(), user_dto.getPassword());
 
         if(user != null){
             req.getSession().setAttribute("user", user);

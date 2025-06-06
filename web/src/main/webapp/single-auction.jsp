@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Smartphone X Pro - BidHub</title>
+    <title>Auction</title>
     <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
     <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
     <link
@@ -32,7 +32,7 @@
       }
     </style>
   </head>
-  <body class="font-plus-jakarta-sans bg-gray-50 text-gray-900">
+  <body class="font-plus-jakarta-sans bg-gray-50 text-gray-900" onload="getAuction()">
     <div class="relative flex min-h-screen flex-col">
       <%@ include file="/components/header.jsp" %>
       <main class="container mx-auto flex-1 px-4 py-8 sm:px-6 lg:px-8">
@@ -43,8 +43,8 @@
                 <li>
                   <a
                     class="font-medium text-gray-500 hover:text-gray-700"
-                    href="#"
-                    >Electronics</a
+                    href="index.jsp"
+                    >Home</a
                   >
                 </li>
                 <li>
@@ -62,7 +62,7 @@
                   </svg>
                 </li>
                 <li>
-                  <span class="font-medium text-gray-800">Smartphones</span>
+                  <span id="breadcrumbTitle" class="font-medium text-gray-800">Auction</span>
                 </li>
               </ol>
             </nav>
@@ -83,16 +83,12 @@
               <div>
                 <h1
                   class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                  id="title"
                 >
-                  Smartphone X Pro
+                  Title
                 </h1>
-                <p class="mt-4 text-gray-700">
-                  The Smartphone X Pro is a high-end device with a stunning
-                  display, powerful processor and advanced camera system. It
-                  features a 6.7-inch OLED display with a 120Hz refresh rate, a
-                  Snapdragon 8 Gen 2 chip, and a triple-lens camera setup with a
-                  50MP main sensor. The phone also supports fast charging and
-                  has a long-lasting battery.
+                <p id="description" class="mt-4 text-gray-700">
+                  Description
                 </p>
                 <div class="mt-8 p-6 bg-white rounded-lg shadow-md">
                   <div class="flex flex-col gap-4">
@@ -143,6 +139,7 @@
                     <div>
                       <div
                         class="rounded-md bg-gray-100 py-3 px-2 text-2xl font-bold text-gray-900"
+                        id="days"
                       >
                         2
                       </div>
@@ -151,6 +148,7 @@
                     <div>
                       <div
                         class="rounded-md bg-gray-100 py-3 px-2 text-2xl font-bold text-gray-900"
+                        id="hours"
                       >
                         14
                       </div>
@@ -159,6 +157,7 @@
                     <div>
                       <div
                         class="rounded-md bg-gray-100 py-3 px-2 text-2xl font-bold text-gray-900"
+                        id="minutes"
                       >
                         30
                       </div>
@@ -167,6 +166,7 @@
                     <div>
                       <div
                         class="rounded-md bg-gray-100 py-3 px-2 text-2xl font-bold text-gray-900"
+                        id="seconds"
                       >
                         15
                       </div>
@@ -398,5 +398,6 @@
         </div>
       </footer>
     </div>
+  <script src="assets/scripts/singleAuction.js"></script>
   </body>
 </html>

@@ -1,8 +1,7 @@
 package lk.thidas.ee.ejb.bean;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.ejb.LocalBean;
-import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
 import jakarta.ejb.Stateless;
 import lk.thidas.ee.core.model.AuctionItem;
 import lk.thidas.ee.core.model.User;
@@ -13,21 +12,20 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Singleton
+@Startup
 @Stateless
-@LocalBean
 public class AuctionManagerBean implements AuctionService {
 
     private Map<String, AuctionItem> auctionItems = new ConcurrentHashMap<>();
 
     @PostConstruct
-    void initSampleData(){
+    void initSampleData() {
         // Add a variety of auction items with different categories, prices, and descriptions
         LocalDateTime now = LocalDateTime.now();
 
         // Fashion items
         addAuctionItem(new AuctionItem("Vintage Leather Jacket", "Stylish leather jacket perfect for any occasion", 10.00, now, now.plusDays(1)));
-        addAuctionItem(new AuctionItem("Designer Handbag", "Luxury designer handbag, barely used", 50.00, now.plusHours(1),  now.plusDays(2)));
+        addAuctionItem(new AuctionItem("Designer Handbag", "Luxury designer handbag, barely used", 50.00, now.plusHours(1), now.plusDays(2)));
         addAuctionItem(new AuctionItem("Diamond Necklace", "Beautiful 18k gold necklace with diamond pendant", 200.00, now.plusHours(2), now.plusHours(3)));
 
         // Electronics
@@ -37,13 +35,13 @@ public class AuctionManagerBean implements AuctionService {
 
         // Home & Garden
         addAuctionItem(new AuctionItem("Antique Desk", "19th century mahogany writing desk", 150.00, now.plusDays(3), now.plusDays(4)));
-        addAuctionItem(new AuctionItem("Garden Furniture Set", "Complete patio furniture set with umbrella", 120.00, now.plusDays(3).plusHours(5),  now.plusDays(4)));
-        addAuctionItem(new AuctionItem("Oil Painting", "Original landscape oil painting by local artist", 90.00, now.plusDays(4),  now.plusDays(5)));
+        addAuctionItem(new AuctionItem("Garden Furniture Set", "Complete patio furniture set with umbrella", 120.00, now.plusDays(3).plusHours(5), now.plusDays(4)));
+        addAuctionItem(new AuctionItem("Oil Painting", "Original landscape oil painting by local artist", 90.00, now.plusDays(4), now.plusDays(5)));
 
         // Collectibles
-        addAuctionItem(new AuctionItem("Rare Comic Book", "First edition comic in mint condition", 250.00, now.plusDays(5),  now.plusDays(6)));
-        addAuctionItem(new AuctionItem("Vintage Vinyl Records", "Collection of classic rock vinyl records", 40.00, now.plusDays(5).plusHours(12),  now.plusDays(6)));
-        addAuctionItem(new AuctionItem("Sports Memorabilia", "Signed baseball from championship game", 180.00, now.minusHours(4),  now.plusDays(1)));
+        addAuctionItem(new AuctionItem("Rare Comic Book", "First edition comic in mint condition", 250.00, now.plusDays(5), now.plusDays(6)));
+        addAuctionItem(new AuctionItem("Vintage Vinyl Records", "Collection of classic rock vinyl records", 40.00, now.plusDays(5).plusHours(12), now.plusDays(6)));
+        addAuctionItem(new AuctionItem("Sports Memorabilia", "Signed baseball from championship game", 180.00, now.minusHours(4), now.plusDays(1)));
 
         System.out.println("Sample auction items created.");
     }
@@ -73,14 +71,14 @@ public class AuctionManagerBean implements AuctionService {
     }
 
     @Override
-    public void addNewBid(AuctionItem item, User user, double amount) {
-        // Find the item to bid on
-        AuctionItem existingItem = getAuctionItem(item);
+    public void addNewBid(String auctionID, User user, double amount) {
+//         Find the item to bid on
+         AuctionItem existingItem = getAuctionItem(auctionID);
 
         if (existingItem != null) {
             // In a real implementation, we would create a Bidder object and associate it with the item
             // For now, we'll just log the bid
-            System.out.println("New bid added: User " + user.getUsername() + " bid $" + amount + " on " + item.getTitle());
+            System.out.println("New bid added: User " + user.getUsername() + " bid $" + amount + " on " + existingItem.getTitle());
 
             // Here we could update the current highest bid on the item if needed
             // This would require adding a currentBid field to AuctionItem
@@ -106,15 +104,13 @@ public class AuctionManagerBean implements AuctionService {
     }
 
     @Override
-    public AuctionItem getAuctionItem(AuctionItem item) {
-        // Since we don't have a direct way to get an item by its object reference,
-        // we'll search for an item with matching title
-        for (AuctionItem existingItem : auctionItems.values()) {
-            if (existingItem.getTitle().equals(item.getTitle())) {
-                return existingItem;
-            }
+    public AuctionItem getAuctionItem(String auctionID) {
+        System.out.println("Getting auction item: " + auctionID);
+        AuctionItem auctionItem = auctionItems.get(auctionID);
+        if (auctionItem == null) {
+            throw new NullPointerException("Auction Item with id " + auctionID + " not found.");
         }
-        return null;
+        return auctionItem;
     }
 
     @Override

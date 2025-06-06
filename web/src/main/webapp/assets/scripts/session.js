@@ -43,7 +43,6 @@ async function loadUser() {
     }
 }
 
-// Add event listener to call loadUser when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     loadUser();
 });
