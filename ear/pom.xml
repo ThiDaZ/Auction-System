@@ -58,7 +58,7 @@
                         <ejbModule>
                             <groupId>lk.thidas.ee</groupId>
                             <artifactId>ejb</artifactId>
-                            <bundleFileName>ejb.jar</bundleFileName>
+                            <bundleFileName>ejb-module.jar</bundleFileName>
                             <!-- to change final bundle name-->
                         </ejbModule>
                         <webModule>

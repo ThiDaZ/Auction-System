@@ -29,6 +29,7 @@
         <dependency>
             <groupId>lk.thidas.ee</groupId>
             <artifactId>core</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
     </dependencies>

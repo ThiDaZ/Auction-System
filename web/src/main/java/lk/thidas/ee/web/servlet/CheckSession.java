@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.thidas.ee.core.dto.Response_DTO;
+import lk.thidas.ee.core.dto.User_DTO;
 import lk.thidas.ee.core.model.User;
 
 import java.io.IOException;
@@ -18,23 +19,25 @@ public class CheckSession extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        JsonObject jsonObject = new JsonObject();
         Gson gson = new Gson();
+        JsonObject jsonObject = new JsonObject();
 
-        Response_DTO responseDto = new Response_DTO();
 
-        if(req.getSession().getAttribute("user") != null){
+        if (req.getSession().getAttribute("user") != null) {
             User user = (User) req.getSession().getAttribute("user");
-            responseDto.setContent(user);
-            responseDto.isSuccess(true);
-        }else{
-            responseDto.setContent("not signed in");
+            User_DTO userDto = new User_DTO(user.getUsername(), user.getEmail());
+
+            jsonObject.add("user", gson.toJsonTree(userDto));
+            jsonObject.addProperty("success", true);
+
+        } else {
+            jsonObject.addProperty("success", false);
+            jsonObject.addProperty("message", "You are not logged in");
         }
 
-        jsonObject.add("response_DTO", gson.toJsonTree(responseDto));
 
         resp.setContentType("application/json");
-        resp.getWriter().write(jsonObject.toString());
+        resp.getWriter().write(gson.toJson(jsonObject));
 
     }
 }

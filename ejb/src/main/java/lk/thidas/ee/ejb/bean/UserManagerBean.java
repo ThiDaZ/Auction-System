@@ -1,17 +1,29 @@
 package lk.thidas.ee.ejb.bean;
 
-import jakarta.ejb.Singleton;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.LocalBean;
 import jakarta.ejb.Startup;
 import jakarta.ejb.Stateless;
 import lk.thidas.ee.core.model.User;
+import lk.thidas.ee.ejb.remote.UserService;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Startup
 @Stateless
-public class UserManagerBean {
+@LocalBean
+public class UserManagerBean implements UserService {
     private Map<String, User> users = new ConcurrentHashMap<>();
+
+    @PostConstruct
+    void initSampleData() {
+        registerUser("Alice", "alice@example.com", "123");
+        registerUser("Bob", "bob@example.com", "123");
+        registerUser("Charlie", "charlie@example.com", "123");
+        System.out.println("Sample users registered.");
+    }
+
 
     public boolean registerUser(String username, String email, String password) {
         if (users.containsKey(email)) {
@@ -23,7 +35,6 @@ public class UserManagerBean {
     }
 
     public User login(String email, String password) {
-
         if (users.containsKey(email)) {
             User user = users.get(email);
             if (user != null) {
@@ -37,7 +48,6 @@ public class UserManagerBean {
             }
         } else {
             System.out.println("User not found");
-            return null;
         }
         return null;
     }

@@ -18,6 +18,11 @@ public class User_DTO implements Serializable {
     public User_DTO() {
     }
 
+    public User_DTO(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
+
     public User_DTO(String username, String email, String password, String confirmPassword) {
         this.username = username;
         this.email = email;

@@ -7,11 +7,10 @@
           rel="stylesheet"/>
     <title>Auction - SignUp</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,"/>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 </head>
-<body>
+<body >
 <div class="min-h-screen flex flex-col bg-slate-50" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
 
     <%@ include file="/components/header.jsp" %>
