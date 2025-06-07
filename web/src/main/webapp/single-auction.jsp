@@ -90,49 +90,15 @@
                 <p id="description" class="mt-4 text-gray-700">
                   Description
                 </p>
-                <div class="mt-8 p-6 bg-white rounded-lg shadow-md">
-                  <div class="flex flex-col gap-4">
-                    <div class="flex items-center justify-between">
-                      <div>
-                        <h2 class="text-sm font-medium text-gray-600">
-                          Highest Bid
-                        </h2>
-                        <p
-                          class="mt-1 text-5xl font-extrabold text-primary-color"
-                        >
-                          $450
-                        </p>
-                      </div>
-                      <div class="text-right">
-                        <h2 class="text-sm font-medium text-gray-600">
-                          Highest Bidder
-                        </h2>
-                        <div class="flex items-center gap-2 mt-1">
-                          <img
-                            alt="Bidder Avatar"
-                            class="h-10 w-10 rounded-full"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmkIgPNfYZdvPOCiFDvhzUzGJaAOWUuN0EzuEDUFLdp9HuZKeNeAnyEieXtMW7eBP3QYHw0A-soyB7FWokkaSU10Y-oK5MXiTrlmZc3y8_fOFgctVjWrk5XjA6wxiS-3KCQDEInzDZgHPNLRKu-bCZtbDJakEmN0h6iToY6-DoFHNVBpJxwwhHfNbylNNKDBkfy3gZSUzPULrf7InuY6E5_F89E5GvyUW6EHTN96LqJZEUKPFemvMQA2zcKtCC8fUNAKm9VkdtkXI"
-                          />
-                          <p class="text-xl font-bold text-gray-800">John D.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="border-t border-gray-200 pt-4">
-                      <h2 class="text-sm font-medium text-gray-600">
-                        Your Bid
-                      </h2>
-                      <p class="mt-1 text-3xl font-bold text-green-600">$420</p>
-                      <p class="mt-1 text-xs text-gray-500">
-                        You are not the highest bidder.
-                      </p>
-                    </div>
-                  </div>
-                  <p class="mt-6 text-sm text-gray-500">
-                    Minimum bid increment: $5
-                  </p>
+
+<%--            state card--%>
+                <div class="mt-8 p-6 bg-white rounded-lg shadow-md" id="card-wrapper">
                 </div>
-                <div class="mt-8">
-                  <h2 id="time-status" class="text-sm font-medium text-gray-600">
+                <%@ include file="components/auctionStateCards.jsp" %>
+
+<%--            time--%>
+                <div class="mt-8" id="timer-wrapper">
+                  <h2 id="time-status-title" class="text-sm font-medium text-gray-600">
                     Time Remaining
                   </h2>
                   <div class="mt-2 grid grid-cols-4 gap-2 text-center">
@@ -176,6 +142,7 @@
                 </div>
               </div>
 
+<%--                form--%>
               <div class="mt-10">
                 <form>
                   <div class="grid grid-cols-3 gap-4 items-end">
@@ -231,8 +198,11 @@
                   </div>
                 </form>
               </div>
+
             </div>
           </div>
+
+<%--            bidding history--%>
           <div class="mt-12 bg-white shadow-lg rounded-lg p-6">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">
               Bidding History
@@ -388,13 +358,15 @@
               </div>
             </div>
           </div>
+
         </div>
       </main>
+
       <footer class="bg-gray-100 border-t border-gray-200">
         <div
           class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-sm text-gray-500"
         >
-          <p>© 2024 BidHub. All rights reserved.</p>
+          <p>© 2025 Auction. All rights reserved.</p>
         </div>
       </footer>
     </div>

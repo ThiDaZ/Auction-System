@@ -31,55 +31,101 @@ function loadAuction(item) {
     const startTime = parseDateTime(item.startTime);
     const endTime = parseDateTime(item.endTime)
 
-
     document.getElementById("breadcrumbTitle").textContent = item.title;
     document.getElementById("title").textContent = item.title;
     document.getElementById("description").textContent = item.description;
 
     startCountdownUpdater(startTime, endTime);
-
 }
 
 function startCountdownUpdater(startTime, endTime) {
-    setInterval(() => {
 
+    let currentState = "";
+
+    const countdownInterval = setInterval(() => {
+
+        const cardWrapper = document.getElementById("card-wrapper");
         const timeduration = getTimeduration(startTime, endTime);
+        const timeStatusTitle = document.getElementById("time-status-title");
 
-        document.getElementById("days").textContent = timeduration.duration.days;
-        document.getElementById("hours").textContent = timeduration.duration.hours;
-        document.getElementById("minutes").textContent = timeduration.duration.minutes;
-        document.getElementById("seconds").textContent = timeduration.duration.seconds;
+        const timer = document.getElementById('timer-wrapper');
+
+        if (timeduration.status !== currentState) {
+            currentState = timeduration.status;
+            cardWrapper.innerHTML = ""
+
+            switch (timeduration.status) {
+                case "upcoming": {
+                    console.log("upcoming")
+                    const template = document.getElementById("upcoming-card")
+                    cardWrapper.appendChild(template.content.cloneNode(true))
+                    timeStatusTitle.textContent = "Auction Starts In";
+                    break;
+                }
+                case "active": {
+                    console.log("active")
+                    const template = document.getElementById("active-card");
+                    cardWrapper.appendChild(template.content.cloneNode(true))
+                    timeStatusTitle.textContent = "Time Remaining "
+                    break;
+                }
+                case "ended": {
+                    console.log("ended")
+                    const template = document.getElementById("end-card");
+                    if (timer) timer.remove();
+                    cardWrapper.appendChild(template.content.cloneNode(true))
+                    clearInterval(countdownInterval);
+                    break;
+                }
+            }
+
+        }
+
+        if (timer && timeduration.duration) {
+            document.getElementById("days").textContent = timeduration.duration.days;
+            document.getElementById("hours").textContent = timeduration.duration.hours;
+            document.getElementById("minutes").textContent = timeduration.duration.minutes;
+            document.getElementById("seconds").textContent = timeduration.duration.seconds;
+        }
 
 
     }, 1000); // ⏱ every 1 second
+
 }
 
 
-function getTimeduration(startTime, endTime){
+function getTimeduration(startTime, endTime) {
     const now = new Date();
 
     let status = "";
     let duration = {};
 
 
-    if(now< startTime){
+    if (now < startTime) {
         duration = formatDuration(startTime - now);
-        status = "pending"
-    }else if(now >= startTime && now < endTime){
+        status = "upcoming"
+    } else if (now >= startTime && now < endTime) {
         duration = formatDuration(endTime - now);
         status = "active"
-    }else{
+    } else {
         status = "ended"
     }
 
-    return{
+    return {
         status,
         duration
     }
 }
 
 function formatDuration(ms) {
-    if (ms <= 0) return "0s";
+    if (ms <= 0) {
+        return {
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0
+        };
+    }
 
     const totalSeconds = Math.floor(ms / 1000);
     const days = Math.floor(totalSeconds / (60 * 60 * 24));

@@ -33,106 +33,6 @@
   </head>
   <body class="font-plus-jakarta-sans bg-gray-50 text-gray-900">
     <div class="relative flex min-h-screen flex-col">
-      <header class="sticky top-0 z-50 bg-white shadow-sm">
-        <div
-          class="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3"
-        >
-          <div class="flex items-center gap-8">
-            <a class="flex items-center gap-2 text-gray-900" href="#">
-              <svg
-                class="h-8 w-8 text-primary-color"
-                fill="none"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                ></path>
-              </svg>
-              <h1 class="text-xl font-bold leading-tight tracking-[-0.015em]">
-                BidHub
-              </h1>
-            </a>
-            <nav class="hidden md:flex items-center gap-6">
-              <a
-                class="text-sm font-medium text-gray-700 hover:text-primary-color transition-colors"
-                href="#"
-                >Home</a
-              >
-              <a
-                class="text-sm font-medium text-gray-700 hover:text-primary-color transition-colors"
-                href="#"
-                >Categories</a
-              >
-              <a
-                class="text-sm font-medium text-gray-700 hover:text-primary-color transition-colors"
-                href="#"
-                >My Bids</a
-              >
-              <a
-                class="text-sm font-medium text-gray-700 hover:text-primary-color transition-colors"
-                href="#"
-                >Watchlist</a
-              >
-            </nav>
-          </div>
-          <div class="flex items-center gap-4">
-            <div class="relative hidden sm:block">
-              <div
-                class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="h-5 w-5 text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                    fill-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <input
-                class="block w-full rounded-md border-gray-300 bg-gray-50 py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:border-primary-color focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary-color"
-                placeholder="Search auctions..."
-                type="search"
-              />
-            </div>
-            <button
-              class="relative rounded-full p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-2"
-              type="button"
-            >
-              <span class="sr-only">View notifications</span>
-              <svg
-                aria-hidden="true"
-                class="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </svg>
-            </button>
-            <div
-              class="h-10 w-10 rounded-full bg-cover bg-center bg-no-repeat"
-              style="
-                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzRnGQ1p6LIUal86kG1gHFBoDNUSaWRkeFcQN1awF6UqImOSiaEC4Mb26f_b4wv3EbBUQQ-U4HDGjGMHijUh-RQ3P6vFWRgzFODT4QYLfhsmBl5sEEFGdwToQR9CEr15s6aeiiZ23F7ZaSJ5H5BzNDlAdlz2sMqQJzm5Hnc1I7KnvH3FikI4OSc5jy03uGRMGRolcBd2s_CyMk1L2z5fNeCgKpguMHewBtt5mYw7x2JBWPqBnmIaWq5XNEfQXb3zCQM19NM0AiWds');
-              "
-            ></div>
-          </div>
-        </div>
-      </header>
       <main class="container mx-auto flex-1 px-4 py-8 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto">
           <div class="mb-4">
@@ -165,6 +65,7 @@
               </ol>
             </nav>
           </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <div
@@ -177,6 +78,7 @@
                 />
               </div>
             </div>
+
             <div class="flex flex-col justify-between">
               <div>
                 <h1
@@ -184,6 +86,7 @@
                 >
                   Smartphone X Pro
                 </h1>
+
                 <p class="mt-4 text-gray-700">
                   The Smartphone X Pro is a high-end device with a stunning
                   display, powerful processor, and advanced camera system. It
@@ -192,8 +95,10 @@
                   50MP main sensor. The phone also supports fast charging and
                   has a long-lasting battery.
                 </p>
-                <div class="mt-8 p-6 bg-white rounded-lg shadow-md">
-                  <div class="flex flex-col gap-4">
+
+                <!-- card active state -->
+                <div class="mt-8 p-6 bg-white rounded-lg shadow-md" id="card-warpper">
+                  <div class="flex flex-col gap-4" id="active-card">
                     <div class="flex items-center justify-between">
                       <div>
                         <h2 class="text-sm font-medium text-gray-600">
@@ -201,6 +106,7 @@
                         </h2>
                         <p
                           class="mt-1 text-5xl font-extrabold text-primary-color"
+                          id="highest-bid"
                         >
                           $450
                         </p>
@@ -213,9 +119,10 @@
                           <img
                             alt="Bidder Avatar"
                             class="h-10 w-10 rounded-full"
+                            id="highest-bidder-avatar"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmkIgPNfYZdvPOCiFDvhzUzGJaAOWUuN0EzuEDUFLdp9HuZKeNeAnyEieXtMW7eBP3QYHw0A-soyB7FWokkaSU10Y-oK5MXiTrlmZc3y8_fOFgctVjWrk5XjA6wxiS-3KCQDEInzDZgHPNLRKu-bCZtbDJakEmN0h6iToY6-DoFHNVBpJxwwhHfNbylNNKDBkfy3gZSUzPULrf7InuY6E5_F89E5GvyUW6EHTN96LqJZEUKPFemvMQA2zcKtCC8fUNAKm9VkdtkXI"
                           />
-                          <p class="text-xl font-bold text-gray-800">John D.</p>
+                          <p class="text-xl font-bold text-gray-800" id="highest-bidder-name">John D.</p>
                         </div>
                       </div>
                     </div>
@@ -223,16 +130,57 @@
                       <h2 class="text-sm font-medium text-gray-600">
                         Your Bid
                       </h2>
-                      <p class="mt-1 text-3xl font-bold text-green-600">$420</p>
-                      <p class="mt-1 text-xs text-gray-500">
-                        You are not the highest bidder.
+                      <p class="mt-1 text-3xl font-bold text-green-600" id="user-bid">$420</p>
+                      <p class="mt-1 text-xs text-gray-500" id="user-bidder-status">
+                        <strong>Status:</strong> You are the highest bidder.
+                      </p>
+                    </div>
+                    <p class="mt-2 text-sm text-gray-500">
+                      Minimum bid increment: $5
+                    </p>
+                  </div>
+                </div>
+
+                <!-- card end state -->
+                <div class="mt-8 p-6 bg-white rounded-lg shadow-md">
+                  <div class="flex flex-col gap-4" id="end-card">
+                    <div>
+                      <h2 class="text-sm font-medium text-gray-600">
+                        Winning Bid
+                      </h2>
+                      <p class="mt-1 text-5xl font-extrabold text-green-600" id="winning-bid">
+                        $550
+                      </p>
+                    </div>
+                    <div class="text-sm text-gray-700">
+                      <p id="winner-info">
+                        <strong>Winner:</strong> John D. (j***n@example.com)
+                      </p>
+                      <p id="auction-end-info">
+                        <strong>Auction Ended:</strong> July 28, 2024, 10:00 AM
+                        PST
                       </p>
                     </div>
                   </div>
-                  <p class="mt-6 text-sm text-gray-500">
-                    Minimum bid increment: $5
-                  </p>
                 </div>
+
+                <!-- card before active state -->
+                <div class="mt-8 p-6 bg-white rounded-lg shadow-md">
+                  <div class="flex flex-col gap-4" id="before-active-card">
+                    <div>
+                      <h2 class="text-sm font-medium text-gray-600">
+                        Starting Bid
+                      </h2>
+                      <p
+                        class="mt-1 text-5xl font-extrabold text-primary-color" id="starting-bid"
+                      >
+                        $400
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- time -->
                 <div class="mt-8">
                   <h2 class="text-sm font-medium text-gray-600">
                     Time Remaining
@@ -275,6 +223,7 @@
               </div>
 
               <div class="mt-10">
+                <!-- bidding form -->
                 <form>
                   <div class="grid grid-cols-3 gap-4 items-end">
                     <div class="col-span-2">
@@ -307,6 +256,8 @@
                       Place Bid
                     </button>
                   </div>
+
+                  <!-- quick bid options -->
                   <div class="mt-4 grid grid-cols-3 gap-2">
                     <button
                       class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-1"
@@ -331,6 +282,7 @@
               </div>
             </div>
           </div>
+
           <div class="mt-12 bg-white shadow-lg rounded-lg p-6">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">
               Bidding History
