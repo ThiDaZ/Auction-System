@@ -7,4 +7,5 @@ import lk.thidas.ee.core.model.User;
 public interface UserService {
     boolean registerUser(String username, String email, String password);
     User login(String email, String password);
+    User getUser(String email);
 }

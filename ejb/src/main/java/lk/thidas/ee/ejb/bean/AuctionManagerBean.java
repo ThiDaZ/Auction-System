@@ -54,7 +54,6 @@ public class AuctionManagerBean implements AuctionService {
 
     @Override
     public void removeAuctionItem(AuctionItem item) {
-        // Find the key for the item with matching title
         String keyToRemove = null;
         for (Map.Entry<String, AuctionItem> entry : auctionItems.entrySet()) {
             if (entry.getValue().getTitle().equals(item.getTitle())) {
@@ -63,7 +62,6 @@ public class AuctionManagerBean implements AuctionService {
             }
         }
 
-        // Remove the item if found
         if (keyToRemove != null) {
             auctionItems.remove(keyToRemove);
             System.out.println("Auction item removed: " + item.getTitle());
@@ -72,7 +70,7 @@ public class AuctionManagerBean implements AuctionService {
 
     @Override
     public void addNewBid(String auctionID, User user, double amount) {
-//         Find the item to bid on
+
          AuctionItem existingItem = getAuctionItem(auctionID);
 
         if (existingItem != null) {
