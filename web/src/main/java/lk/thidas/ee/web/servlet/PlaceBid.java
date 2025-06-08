@@ -42,9 +42,7 @@ public class PlaceBid extends HttpServlet {
                 responseDTO.setContent("fail");
             }
         }
-
         System.out.println("Place Bid: " + placeBidDTO.getBidAmount());
-        System.out.println("Auction ID  : " + placeBidDTO.getAuctionId());
 
         resp.setContentType("application/json");
         resp.getWriter().write(gson.toJson(responseDTO));

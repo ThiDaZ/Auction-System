@@ -1,4 +1,3 @@
-
 async function getAuction() {
 
     const parameter = new URLSearchParams(window.location.search);
@@ -231,3 +230,46 @@ function updateQuickBidButtons() {
         }
     }
 }
+
+function tableUpdate(data) {
+    const tableContainer = document.getElementById("bid-table-container");
+    const template = document.getElementById("bid-row-template");
+    const clone = template.content.cloneNode(true);
+
+    const email = data.email;
+    const maskedEmail = email.replace(/(.{1})(.*)(@.*)/, "$1***$3");
+    const userName = maskedEmail;
+
+    const bidAmount = parseFloat(data.bid_amount);
+    if (isNaN(bidAmount)) {
+        console.warn("Invalid bid amount");
+        return;
+    }
+
+    const date = new Date(data.bid_time);
+    
+    const userNameElement = clone.querySelector("#user_name");
+    const bidAmountElement = clone.querySelector("#bid_amount");
+    const bidTimeElement = clone.querySelector("#bid_time");
+
+    if (userNameElement && bidAmountElement && bidTimeElement) {
+        userNameElement.textContent = userName;
+        bidAmountElement.textContent = `LKR ${bidAmount}`;
+        bidTimeElement.textContent = date;
+    }
+
+    if (tableContainer.firstChild) {
+        tableContainer.insertBefore(clone, tableContainer.firstChild);
+    } else {
+        tableContainer.appendChild(clone);
+    }
+}
+
+function cardHighsetBidUpdate(data) {
+
+}
+
+function cardUpdate(data) {
+
+}
+
