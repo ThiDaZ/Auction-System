@@ -2,7 +2,6 @@ package lk.thidas.ee.ejb.bean;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
-import jakarta.inject.Inject;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import lk.thidas.ee.core.model.AuctionItem;
@@ -30,6 +29,7 @@ public class BidManagerBean implements BidService {
 
 
     private Map<String, Bidder> bidders = new ConcurrentHashMap<>();
+    private final Map<String, Bidder> winningBids = new ConcurrentHashMap<>();
 
     @Override
     public Bidder getBid(String bidId) {
@@ -147,6 +147,16 @@ public class BidManagerBean implements BidService {
                 .filter(bidder -> bidder.getAuctionId().equals(auctionId))
                 .sorted(Comparator.comparing(Bidder::getBidDate).reversed()) // Optional: latest bid first
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void setWinningBid(String auctionId, Bidder winner) {
+        winningBids.put(auctionId, winner);
+    }
+
+    @Override
+    public Bidder getWinningBid(String auctionId) {
+        return winningBids.get(auctionId);
     }
 
 }

@@ -126,13 +126,53 @@ function startCountdownUpdater(startTime, endTime) {
                     timeStatusTitle.textContent = "Time Remaining ";
                     setTimeout(updateQuickBidButtons, 100);
                     break;
-                }
-                case "ended": {
-                    const template = document.getElementById("end-card");
-                    isFormEnable("kill");
-                    bidHistoryWrapper?.remove();
-                    timer?.remove();
-                    cardWrapper.appendChild(template.content.cloneNode(true));
+                }                case "ended": {
+                    // Only show end card if we don't already have one
+                    if (!document.querySelector("#card-wrapper #winning-bid")) {
+                        const template = document.getElementById("end-card");
+                        if (template) {
+                            // Get the current highest bid and bidder info BEFORE clearing anything
+                            const highestBidElement = document.getElementById("highest-bid");
+                            const highestBidderNameElement = document.getElementById("highest-bidder-name");
+                            const bidderInfoDiv = document.querySelector("#highest-bid-info .text-right");
+                            
+                            // Store the values
+                            const currentHighestBid = highestBidElement ? highestBidElement.textContent : "LKR 0";
+                            let winnerInfo = "No winner";
+                            
+                            if (highestBidderNameElement && bidderInfoDiv && bidderInfoDiv.style.display !== "none") {
+                                const bidderName = highestBidderNameElement.textContent;
+                                winnerInfo = bidderName;
+                            }
+                            
+                            // Now we can safely remove elements
+                            isFormEnable("kill");
+                            bidHistoryWrapper?.remove();
+                            timer?.remove();
+                            
+                            // Clone and update the end card
+                            const endCard = template.content.cloneNode(true);
+                            const winningBidElement = endCard.querySelector("#winning-bid");
+                            if (winningBidElement) {
+                                winningBidElement.textContent = currentHighestBid;
+                            }
+                            
+                            const winnerInfoElement = endCard.querySelector("#winner-info");
+                            if (winnerInfoElement) {
+                                winnerInfoElement.innerHTML = `<strong>Winner:</strong> ${winnerInfo}`;
+                            }
+                            
+                            // Update end time
+                            const endTimeElement = endCard.querySelector("#auction-end-info");
+                            if (endTimeElement) {
+                                endTimeElement.innerHTML = `<strong>Auction Ended:</strong> ${new Date().toLocaleString()}`;
+                            }
+                            
+                            cardWrapper.innerHTML = "";
+                            cardWrapper.appendChild(endCard);
+                            showEndState();
+                        }
+                    }
                     clearInterval(countdownInterval);
                     break;
                 }
@@ -402,4 +442,19 @@ function formatTimestamp(date) {
     if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} days ago`;
     
     return date.toLocaleDateString();
+}
+
+function showEndState() {
+    const cardWrapper = document.getElementById('card-wrapper');
+    if (!cardWrapper) return;
+    
+    // Remove any existing background classes and add end state background
+    cardWrapper.classList.remove('bg-yellow-50', 'bg-blue-50');
+    cardWrapper.classList.add('bg-gray-50');
+    
+    // Update any additional end state UI elements
+    const timeStatusTitle = document.getElementById("time-status-title");
+    if (timeStatusTitle) {
+        timeStatusTitle.textContent = "Auction Ended";
+    }
 }

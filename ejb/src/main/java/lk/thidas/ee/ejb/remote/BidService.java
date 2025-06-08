@@ -16,5 +16,7 @@ public interface BidService{
     Bidder getHighestBid(String auctionId);
     List<Bidder> getAllBids(String auctionId);
     List<Bidder> getAllBids(AuctionItem item);
+    void setWinningBid(String auctionId, Bidder winner);
+    Bidder getWinningBid(String auctionId);
 
 }
