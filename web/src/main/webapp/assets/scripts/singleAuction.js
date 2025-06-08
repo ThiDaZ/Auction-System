@@ -116,8 +116,8 @@ function isFormEnable(mode) {
     const activeClassQuick = "w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-1";
     const disableClassQuick = "w-full rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400 cursor-not-allowed";
 
-    const activeInput = "focus:ring-primary-color focus:border-primary-color block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md";
-    const disableInput = "focus:ring-primary-color focus:border-primary-color block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100 cursor-not-allowed";
+    const activeInput = "focus:ring-primary-color focus:border-primary-color block w-full pl-10 pr-12 sm:text-sm border-gray-300 rounded-md";
+    const disableInput = "focus:ring-primary-color focus:border-primary-color block w-full pl-10 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100 cursor-not-allowed";
 
     const activePlaceButton = "flex w-full items-center justify-center rounded-md border border-transparent bg-primary-color px-6 py-3 text-base font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-2 transition-colors";
     const disablePlaceButton = "flex w-full items-center justify-center rounded-md border border-transparent bg-gray-300 px-6 py-3 text-base font-medium text-gray-500 cursor-not-allowed";

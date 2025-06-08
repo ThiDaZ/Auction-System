@@ -33,6 +33,7 @@ public class AuctionUpdateMessageListener implements MessageListener {
             System.out.println("📥 Received auction update: " + body);
 
 
+
         } catch (JMSException e) {
             e.printStackTrace();
         }

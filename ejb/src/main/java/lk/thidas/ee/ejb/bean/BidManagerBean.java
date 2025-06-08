@@ -5,6 +5,7 @@ import jakarta.ejb.Stateless;
 import lk.thidas.ee.core.model.AuctionItem;
 import lk.thidas.ee.core.model.Bidder;
 import lk.thidas.ee.core.model.User;
+import lk.thidas.ee.ejb.mdb.AuctionMessageSender;
 import lk.thidas.ee.ejb.remote.AuctionService;
 import lk.thidas.ee.ejb.remote.BidService;
 import lk.thidas.ee.ejb.remote.UserService;
@@ -52,6 +53,10 @@ public class BidManagerBean implements BidService {
                     + "\n"
                     + newBid.getBidDate()
             );
+
+            AuctionMessageSender sender = new AuctionMessageSender();
+            sender.sendBidUpdate("{ \"auctionId\": " + auctionId + ", \"bid\": " + newBid.getBidAmount() + " }");
+
             return newBid;
         }
         return null;

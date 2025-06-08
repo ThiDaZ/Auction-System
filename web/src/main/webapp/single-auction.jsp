@@ -164,7 +164,7 @@
                                             <span class="text-gray-500 sm:text-sm">LKR</span>
                                         </div>
                                         <input
-                                                class="focus:ring-primary-color focus:border-primary-color block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100 cursor-not-allowed"
+                                                class="focus:ring-primary-color focus:border-primary-color block w-full pl-10 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100 cursor-not-allowed"
                                                 disabled=""
                                                 id="bid-amount"
                                                 min="0"
