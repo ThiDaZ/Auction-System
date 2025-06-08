@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 public class Bidder implements Serializable {
     private User user;
     private AuctionItem item;
+    private String auctionId;
     private String bidderId;
     private double bidAmount;
     private LocalDateTime bidDate;
@@ -13,8 +14,9 @@ public class Bidder implements Serializable {
     public Bidder(){
     }
 
-    public Bidder(User user, AuctionItem item, String bidderId, double bidAmount, LocalDateTime bidDate) {
+    public Bidder(User user, String auctionId, AuctionItem item, String bidderId, double bidAmount, LocalDateTime bidDate) {
         this.user = user;
+        this.auctionId = auctionId;
         this.item = item;
         this.bidderId = bidderId;
         this.bidAmount = bidAmount;
@@ -59,5 +61,11 @@ public class Bidder implements Serializable {
 
     public void setBidDate(LocalDateTime bidDate) {
         this.bidDate = bidDate;
+    }
+    public String getAuctionId() {
+        return auctionId;
+    }
+    public void setAuctionId(String auctionId) {
+        this.auctionId = auctionId;
     }
 }

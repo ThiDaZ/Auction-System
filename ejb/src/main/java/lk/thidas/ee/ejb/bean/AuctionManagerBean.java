@@ -125,4 +125,14 @@ public class AuctionManagerBean implements AuctionService {
         System.out.println("Checking if auction " + auctionID + " is active: " + isActive);
         return isActive;
     }
+
+    @Override
+    public String getAuctionIdByItem(AuctionItem item){
+        if (item == null) return null;
+        return auctionItems.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(item))
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(null);
+    }
 }

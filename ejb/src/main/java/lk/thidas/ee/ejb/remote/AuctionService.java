@@ -15,4 +15,5 @@ public interface AuctionService {
     AuctionItem getAuctionItem(String auctionID);
     Map<String, AuctionItem> getAllAuctionItems();
     boolean isAuctionActive(String auctionID);
+    String getAuctionIdByItem(AuctionItem item);
 }

@@ -1,7 +1,7 @@
 <%--card active state--%>
 <template id="active-card">
     <div class="flex flex-col gap-4" id="active-card">
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between" id="highest-bid-info">
             <div>
                 <h2 class="text-sm font-medium text-gray-600">
                     Highest Bid
@@ -9,7 +9,7 @@
                 <p class="mt-1 text-5xl font-extrabold text-primary-color"
                    id="highest-bid"
                 >
-                    LKR 450
+                    LKR 0
                 </p>
             </div>
             <div class="text-right">
