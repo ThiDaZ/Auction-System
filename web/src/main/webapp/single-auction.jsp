@@ -172,6 +172,7 @@
                     <button
                       class="flex w-full items-center justify-center rounded-md border border-transparent bg-primary-color px-6 py-3 text-base font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-2 transition-colors"
                       type="submit"
+                      id="bid-place-button"
                     >
                       Place Bid
                     </button>
@@ -180,18 +181,21 @@
                     <button
                       class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-1"
                       type="button"
+                      id="quick-bid-1"
                     >
                       Quick Bid: $455
                     </button>
                     <button
                       class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-1"
                       type="button"
+                      id="quick-bid-2"
                     >
                       Quick Bid: $460
                     </button>
                     <button
                       class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-1"
                       type="button"
+                      id="quick-bid-3"
                     >
                       Quick Bid: $470
                     </button>
@@ -371,5 +375,6 @@
       </footer>
     </div>
   <script src="assets/scripts/singleAuction.js"></script>
+  <script src="assets/scripts/auctionWebSocket.js"></script>
   </body>
 </html>

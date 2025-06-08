@@ -30,12 +30,18 @@ async function getAuction() {
 function loadAuction(item) {
     const startTime = parseDateTime(item.startTime);
     const endTime = parseDateTime(item.endTime)
+    startCountdownUpdater(startTime, endTime);
+
 
     document.getElementById("breadcrumbTitle").textContent = item.title;
     document.getElementById("title").textContent = item.title;
     document.getElementById("description").textContent = item.description;
 
-    startCountdownUpdater(startTime, endTime);
+    if(document.getElementById("before-active-card")){
+        document.getElementById("starting-bid").textContent = item.startBid;
+    }
+
+
 }
 
 function startCountdownUpdater(startTime, endTime) {
@@ -47,7 +53,6 @@ function startCountdownUpdater(startTime, endTime) {
         const cardWrapper = document.getElementById("card-wrapper");
         const timeduration = getTimeduration(startTime, endTime);
         const timeStatusTitle = document.getElementById("time-status-title");
-
         const timer = document.getElementById('timer-wrapper');
 
         if (timeduration.status !== currentState) {
@@ -58,6 +63,7 @@ function startCountdownUpdater(startTime, endTime) {
                 case "upcoming": {
                     console.log("upcoming")
                     const template = document.getElementById("upcoming-card")
+                    isFormEnable(false)
                     cardWrapper.appendChild(template.content.cloneNode(true))
                     timeStatusTitle.textContent = "Auction Starts In";
                     break;
@@ -65,6 +71,7 @@ function startCountdownUpdater(startTime, endTime) {
                 case "active": {
                     console.log("active")
                     const template = document.getElementById("active-card");
+                    isFormEnable(true)
                     cardWrapper.appendChild(template.content.cloneNode(true))
                     timeStatusTitle.textContent = "Time Remaining "
                     break;
@@ -72,6 +79,7 @@ function startCountdownUpdater(startTime, endTime) {
                 case "ended": {
                     console.log("ended")
                     const template = document.getElementById("end-card");
+                    isFormEnable("kill")
                     if (timer) timer.remove();
                     cardWrapper.appendChild(template.content.cloneNode(true))
                     clearInterval(countdownInterval);
@@ -80,18 +88,60 @@ function startCountdownUpdater(startTime, endTime) {
             }
 
         }
-
         if (timer && timeduration.duration) {
             document.getElementById("days").textContent = timeduration.duration.days;
             document.getElementById("hours").textContent = timeduration.duration.hours;
             document.getElementById("minutes").textContent = timeduration.duration.minutes;
             document.getElementById("seconds").textContent = timeduration.duration.seconds;
         }
-
-
     }, 1000); // ⏱ every 1 second
-
 }
+
+function isFormEnable(mode) {
+    const bidAmount = document.getElementById("bid-amount");
+    const bidPlaceButton = document.getElementById("bid-place-button");
+    const quickBid1 = document.getElementById("quick-bid-1");
+    const quickBid2 = document.getElementById("quick-bid-2");
+    const quickBid3 = document.getElementById("quick-bid-3");
+
+    const quickBids = [quickBid1, quickBid2, quickBid3];
+
+    const activeClassQuick = "w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-1";
+    const disableClassQuick = "w-full rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400 cursor-not-allowed";
+
+    const activeInput = "focus:ring-primary-color focus:border-primary-color block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md";
+    const disableInput = "focus:ring-primary-color focus:border-primary-color block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100 cursor-not-allowed";
+
+    const activePlaceButton = "flex w-full items-center justify-center rounded-md border border-transparent bg-primary-color px-6 py-3 text-base font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-2 transition-colors";
+    const disablePlaceButton = "flex w-full items-center justify-center rounded-md border border-transparent bg-gray-300 px-6 py-3 text-base font-medium text-gray-500 cursor-not-allowed";
+
+    if (mode === true) {
+        bidAmount.disabled = false;
+        bidPlaceButton.disabled = false;
+        quickBids.forEach(btn => {
+            btn.disabled = false;
+            btn.className = activeClassQuick;
+        });
+        bidAmount.className = activeInput;
+        bidPlaceButton.className = activePlaceButton;
+    } else if (mode === false) {
+        bidAmount.disabled = true;
+        bidPlaceButton.disabled = true;
+        quickBids.forEach(btn => {
+            btn.disabled = true;
+            btn.className = disableClassQuick;
+        });
+        bidAmount.className = disableInput;
+        bidPlaceButton.className = disablePlaceButton;
+    } else if (mode === "kill") {
+        quickBids.forEach(btn => {
+            btn.remove()
+        });
+        bidAmount.remove()
+        bidPlaceButton.remove()
+    }
+}
+
 
 
 function getTimeduration(startTime, endTime) {
@@ -141,18 +191,26 @@ function formatDuration(ms) {
     }
 }
 
-function parseDateTime(dateTimeObj) {
-    if (!dateTimeObj || !dateTimeObj.date || !dateTimeObj.time) {
-        return new Date();
+// function parseDateTime(dateTimeObj) {
+//     if (!dateTimeObj || !dateTimeObj.date || !dateTimeObj.time) {
+//         return new Date();
+//     }
+//
+//     const {date, time} = dateTimeObj;
+//     return new Date(
+//         date.year,
+//         date.month - 1,
+//         date.day,
+//         time.hour,
+//         time.minute,
+//         time.second
+//     );
+// }
+
+function parseDateTime(dateTimeStr) {
+    if (!dateTimeStr) {
+        return new Date(); // fallback
     }
 
-    const {date, time} = dateTimeObj;
-    return new Date(
-        date.year,
-        date.month - 1,
-        date.day,
-        time.hour,
-        time.minute,
-        time.second
-    );
+    return new Date(dateTimeStr);
 }

@@ -6,6 +6,7 @@ async function getAllAuction() {
 
             if (json.success) {
                 const auctions = json.content;
+                console.log(auctions)
                 generateCard(auctions);
 
             } else {
@@ -124,21 +125,14 @@ function getTimeTagInfo(startTime, endTime) {
     };
 }
 
-function parseDateTime(dateTimeObj) {
-    if (!dateTimeObj || !dateTimeObj.date || !dateTimeObj.time) {
-        return new Date();
+function parseDateTime(dateTimeStr) {
+    if (!dateTimeStr) {
+        return new Date(); // fallback
     }
 
-    const {date, time} = dateTimeObj;
-    return new Date(
-        date.year,
-        date.month - 1,
-        date.day,
-        time.hour,
-        time.minute,
-        time.second
-    );
+    return new Date(dateTimeStr);
 }
+
 
 function formatDuration(ms) {
     if (ms <= 0) return "0s";
