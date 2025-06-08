@@ -36,15 +36,35 @@ function loadAuction(data) {
 
     if(document.getElementById("before-active-card")){
         document.getElementById("starting-bid").textContent = `LKR ${item.startBid}`;
-    }
-
+    }    
     if (data.highest_bid) {
         const highestBidElement = document.getElementById("highest-bid");
         const highestBidderName = document.getElementById("highest-bidder-name");
-        if (highestBidElement && highestBidderName) {
+        const bidderInfoDiv = document.querySelector("#highest-bid-info .text-right");
+        const bidLabel = document.querySelector("#highest-bid-info h2");
+        const userBidElement = document.getElementById("user-bid");
+        const currentUserEmail = getCurrentUserEmail();
+        
+        if (highestBidElement) {
             highestBidElement.textContent = `LKR ${data.highest_bid.amount}`;
-            highestBidderName.textContent = data.highest_bid.bidder_name;
+            
+            // If there's a bidder name, show bidder info, otherwise show as starting bid
+            if (data.highest_bid.bidder_name && highestBidderName) {
+                bidLabel.textContent = "Highest Bid";
+                bidderInfoDiv.style.display = "block";
+                highestBidderName.textContent = data.highest_bid.bidder_name;
+
+                // Update user's bid if they are the highest bidder
+                if (currentUserEmail && data.highest_bid.email === currentUserEmail && userBidElement) {
+                    userBidElement.textContent = `LKR ${data.highest_bid.amount}`;
+                }
+            } else {
+                bidLabel.textContent = "Starting Bid";
+                bidderInfoDiv.style.display = "none";
+            }
         }
+        // Update the bid status to show correct status
+        setTimeout(bidStatusUpdate, 100);
     }
 
     if (data.bid_history && Array.isArray(data.bid_history)) {
@@ -230,6 +250,7 @@ function updateQuickBidButtons() {
     const quickBid1 = document.getElementById("quick-bid-1");
     const quickBid2 = document.getElementById("quick-bid-2");
     const quickBid3 = document.getElementById("quick-bid-3");
+    const bidAmount = document.getElementById("bid-amount");
 
     if (highestBidElement && quickBid1 && quickBid2 && quickBid3) {
         const highestBidText = highestBidElement.textContent.trim();
@@ -239,10 +260,13 @@ function updateQuickBidButtons() {
             const quickBid1Amount = highestBid + 500;
             const quickBid2Amount = highestBid + 1000;
             const quickBid3Amount = highestBid + 1500;
+            const bidAmountValue = highestBid;
 
             quickBid1.textContent = `Quick Bid: LKR ${quickBid1Amount}`;
             quickBid2.textContent = `Quick Bid: LKR ${quickBid2Amount}`;
             quickBid3.textContent = `Quick Bid: LKR ${quickBid3Amount}`;
+            bidAmount.min = bidAmountValue ? bidAmountValue : 0;
+            bidAmount.placeholder = bidAmountValue;
 
             quickBid1.onclick = () => placeQuickBid(1);
             quickBid2.onclick = () => placeQuickBid(2);
@@ -294,10 +318,16 @@ function tableUpdate(data) {
 function cardHighestBidUpdate(data) {
     const highestBidElement = document.getElementById("highest-bid");
     const highestBidderName = document.getElementById("highest-bidder-name");
+    const bidderInfoDiv = document.querySelector("#highest-bid-info .text-right");
+    const bidLabel = document.querySelector("#highest-bid-info h2");
 
-    if (highestBidElement && highestBidderName) {
+    if (highestBidElement) {
         highestBidElement.textContent = `LKR ${data.highest_bid_amount}`;
-        highestBidderName.textContent = data.user_name;
+        if (data.user_name && bidderInfoDiv && bidLabel && highestBidderName) {
+            bidLabel.textContent = "Highest Bid";
+            bidderInfoDiv.style.display = "block";
+            highestBidderName.textContent = data.user_name;
+        }
         bidStatusUpdate();
     }
 }

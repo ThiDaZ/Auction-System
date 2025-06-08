@@ -1,6 +1,7 @@
 package lk.thidas.ee.ejb.bean;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.ejb.Stateless;
 import lk.thidas.ee.core.model.AuctionItem;
@@ -13,6 +14,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Startup
+@Singleton
 @Stateless
 public class AuctionManagerBean implements AuctionService {
 
@@ -24,7 +26,7 @@ public class AuctionManagerBean implements AuctionService {
         LocalDateTime now = LocalDateTime.now();
 
         // Fashion items
-        addAuctionItem(new AuctionItem("Vintage Leather Jacket", "Stylish leather jacket perfect for any occasion", 10.00, now, now.plusDays(1)));
+        addAuctionItem(new AuctionItem("Vintage Leather Jacket", "Stylish leather jacket perfect for any occasion", 10.00, now.minusHours(4), now.plusMinutes(1)));
         addAuctionItem(new AuctionItem("Designer Handbag", "Luxury designer handbag, barely used", 50.00, now.plusHours(1), now.plusDays(2)));
         addAuctionItem(new AuctionItem("Diamond Necklace", "Beautiful 18k gold necklace with diamond pendant", 200.00, now.plusHours(2), now.plusHours(3)));
 
@@ -73,12 +75,7 @@ public class AuctionManagerBean implements AuctionService {
         AuctionItem existingItem = getAuctionItem(auctionID);
 
         if (existingItem != null) {
-            // In a real implementation, we would create a Bidder object and associate it with the item
-            // For now, we'll just log the bid
             System.out.println("New bid added: User " + user.getUsername() + " bid $" + amount + " on " + existingItem.getTitle());
-
-            // Here we could update the current highest bid on the item if needed
-            // This would require adding a currentBid field to AuctionItem
         }
     }
 

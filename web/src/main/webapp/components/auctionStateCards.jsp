@@ -1,10 +1,9 @@
 <%--card active state--%>
 <template id="active-card">
-    <div class="flex flex-col gap-4" id="active-card">
-        <div class="flex items-center justify-between" id="highest-bid-info">
+    <div class="flex flex-col gap-4" id="active-card">        <div class="flex items-center justify-between" id="highest-bid-info">
             <div>
                 <h2 class="text-sm font-medium text-gray-600">
-                    Highest Bid
+                    Starting Bid
                 </h2>
                 <p class="mt-1 text-5xl font-extrabold text-primary-color"
                    id="highest-bid"
@@ -12,7 +11,7 @@
                     LKR 0
                 </p>
             </div>
-            <div class="text-right">
+            <div class="text-right" style="display: none;">
                 <h2 class="text-sm font-medium text-gray-600">
                     Highest Bidder
                 </h2>
@@ -31,13 +30,13 @@
             <h2 class="text-sm font-medium text-gray-600">
                 Your Bid
             </h2>
-            <p class="mt-1 text-3xl font-bold text-green-600" id="user-bid">LKR 420</p>
+            <p class="mt-1 text-3xl font-bold text-green-600" id="user-bid">LKR 0</p>
             <p class="mt-1 text-xs text-gray-500" id="user-bidder-status">
                 <strong>Status:</strong> You are the highest bidder.
             </p>
         </div>
         <p class="mt-2 text-sm text-gray-500">
-            Minimum bid increment: LKR 500
+            Minimum quick bid increment: LKR 500
         </p>
     </div>
 </template>

@@ -49,15 +49,16 @@ public class GetAuction extends HttpServlet {
                 List<Bidder> bidHistory = bidService.getAllBids(auctionID);
 
                 Map<String, Object> responseContent = new HashMap<>();
-                responseContent.put("auction", auctionItem);
-
+                responseContent.put("auction", auctionItem);                // Set highest bid info, use start bid if no bids exist
+                Map<String, Object> highestBidInfo = new HashMap<>();
                 if (highestBid != null) {
-                    Map<String, Object> highestBidInfo = new HashMap<>();
                     highestBidInfo.put("amount", highestBid.getBidAmount());
                     highestBidInfo.put("bidder_name", highestBid.getUser().getUsername());
                     highestBidInfo.put("email", highestBid.getUser().getEmail());
-                    responseContent.put("highest_bid", highestBidInfo);
+                } else {
+                    highestBidInfo.put("amount", auctionItem.getStartBid());
                 }
+                responseContent.put("highest_bid", highestBidInfo);
 
                 // Add bid history
                 responseContent.put("bid_history", bidHistory);
