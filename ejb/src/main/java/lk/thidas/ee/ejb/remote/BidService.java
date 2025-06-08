@@ -13,7 +13,7 @@ public interface BidService{
 
     Bidder getBid(String bidId);
     Bidder placeBid(String email, String auctionId, Double bidAmount, LocalDateTime timestamp);
-    User getHighestBidder(AuctionItem item);
+    Bidder getHighestBid(AuctionItem item);
     List<Bidder> getAllBids(AuctionItem item);
 
 

@@ -44,14 +44,8 @@ public class AuctionUpdateMessageListener implements MessageListener {
                 JsonObject json = Json.createReader(new StringReader(jsonPayload)).readObject();
                 String auctionId = json.getString("auctionId");
 
-
-                JsonObject sendJson = Json.createObjectBuilder()
-                        .add("type", "auction_update")
-                        .add("newBid", json)
-                        .build();
-
-                SessionHandler.getInstance().broadcastToAuction(auctionId, sendJson.toString());
-                System.out.println(sendJson.toString());
+                SessionHandler.getInstance().broadcastToAuction(auctionId, json.toString());
+                System.out.println(json.toString());
 
                 System.out.println("JMS update forwarded to WebSocket for auction: " + auctionId);
             }

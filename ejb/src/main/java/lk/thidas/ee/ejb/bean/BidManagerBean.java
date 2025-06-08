@@ -2,6 +2,8 @@ package lk.thidas.ee.ejb.bean;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 import lk.thidas.ee.core.model.AuctionItem;
 import lk.thidas.ee.core.model.Bidder;
 import lk.thidas.ee.core.model.User;
@@ -27,7 +29,6 @@ public class BidManagerBean implements BidService {
 
     private Map<String, Bidder> bidders = new ConcurrentHashMap<>();
 
-
     @Override
     public Bidder getBid(String bidId) {
         return bidders.get(bidId);
@@ -40,10 +41,38 @@ public class BidManagerBean implements BidService {
         User userData = userService.getUser(email);
 
         String id = UUID.randomUUID().toString();
-
         if (auctionItem != null && userData != null) {
+            Bidder highBid = getHighestBid(auctionItem);
+            if (highBid != null && bidAmount <= highBid.getBidAmount()) {
+                return null;
+            }
+
             Bidder newBid = new Bidder(userData, auctionItem, id, bidAmount, timestamp);
             bidders.put(id, newBid);
+
+            AuctionMessageSender sender = new AuctionMessageSender();
+            JsonObject highBidJson = Json.createObjectBuilder()
+                    .add("type", "highest_bid")
+                    .add("auctionId", auctionId)
+                    .add("user_name", newBid.getUser().getUsername())
+                    .add("highest_bid_amount", newBid.getBidAmount())
+                    .add("email", newBid.getUser().getEmail())
+                    .build();
+            sender.sendMessage(highBidJson.toString());
+
+
+            AuctionMessageSender sender2 = new AuctionMessageSender();
+            JsonObject json = Json.createObjectBuilder()
+                    .add("type", "update_bid")
+                    .add("auctionId", auctionId)
+                    .add("user_name", newBid.getUser().getUsername())
+                    .add("bid_amount", newBid.getBidAmount())
+                    .add("email", newBid.getUser().getEmail())
+                    .add("bid_time", newBid.getBidDate().toString())
+                    .build();
+
+            sender2.sendMessage(json.toString());
+
             System.out.println("new added: "
                     + newBid.getUser().getEmail()
                     + "\n"
@@ -51,25 +80,16 @@ public class BidManagerBean implements BidService {
                     + "\n"
                     + newBid.getBidAmount()
                     + "\n"
-                    + newBid.getBidDate()
-            );
+                    + newBid.getBidDate());
 
-            AuctionMessageSender sender = new AuctionMessageSender();
-            sender.sendMessage(
-                    "{ " +
-                            "\"auctionId\": \"" + auctionId + "\", " +
-                            "\"bid\": \"" + newBid.getBidAmount() + "\", " +
-                            "\"email\": \"" + newBid.getUser().getEmail() + "\", " +
-                            "\"time\": \"" + newBid.getBidDate() + "\"" +
-                            "}");
-
+            System.out.println("✅ Sent highest bid update");
             return newBid;
         }
         return null;
     }
 
     @Override
-    public User getHighestBidder(AuctionItem item) {
+    public Bidder getHighestBid(AuctionItem item) {
         if (item == null) {
             return null;
         }
@@ -83,7 +103,7 @@ public class BidManagerBean implements BidService {
                 .max(Comparator.comparingDouble(Bidder::getBidAmount))
                 .orElse(null);
 
-        return highestBid.getUser();
+        return highestBid;
     }
 
     @Override

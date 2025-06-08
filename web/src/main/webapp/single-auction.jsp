@@ -39,7 +39,6 @@
     </style>
 </head>
 <body onload="getAuction()" class="font-plus-jakarta-sans bg-gray-50 text-gray-900">
-<script src="assets/scripts/auctionWebSocket.js"></script>
 <div class="relative flex min-h-screen flex-col">
     <%@ include file="/components/header.jsp" %>
     <main class="container mx-auto flex-1 px-4 py-8 sm:px-6 lg:px-8">
@@ -233,11 +232,11 @@
                                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmkIgPNfYZdvPOCiFDvhzUzGJaAOWUuN0EzuEDUFLdp9HuZKeNeAnyEieXtMW7eBP3QYHw0A-soyB7FWokkaSU10Y-oK5MXiTrlmZc3y8_fOFgctVjWrk5XjA6wxiS-3KCQDEInzDZgHPNLRKu-bCZtbDJakEmN0h6iToY6-DoFHNVBpJxwwhHfNbylNNKDBkfy3gZSUzPULrf7InuY6E5_F89E5GvyUW6EHTN96LqJZEUKPFemvMQA2zcKtCC8fUNAKm9VkdtkXI"
                                 />
                                 <div>
-                                    <p class="text-sm font-semibold text-gray-800">John D.</p>
-                                    <p class="text-xs text-gray-500">2 hours ago</p>
+                                    <p id="user_name" class="text-sm font-semibold text-gray-800">John D.</p>
+                                    <p id="bid_time" class="text-xs text-gray-500">2 hours ago</p>
                                 </div>
                             </div>
-                            <p class="text-lg font-bold text-primary-color">LKR 450</p>
+                            <p id="bid_amount" class="text-lg font-bold text-primary-color">LKR 450</p>
                         </div>
                     </template>
 
@@ -386,6 +385,7 @@
         </div>
     </footer>
 </div>
+<script src="assets/scripts/auctionWebSocket.js"></script>
 <script src="assets/scripts/singleAuction.js"></script>
 <script src="assets/scripts/bidPlace.js"></script>
 <script src="assets/scripts/session.js"></script>
