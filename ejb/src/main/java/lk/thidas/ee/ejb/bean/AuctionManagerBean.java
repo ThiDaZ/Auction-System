@@ -71,7 +71,7 @@ public class AuctionManagerBean implements AuctionService {
     @Override
     public void addNewBid(String auctionID, User user, double amount) {
 
-         AuctionItem existingItem = getAuctionItem(auctionID);
+        AuctionItem existingItem = getAuctionItem(auctionID);
 
         if (existingItem != null) {
             // In a real implementation, we would create a Bidder object and associate it with the item
@@ -114,5 +114,16 @@ public class AuctionManagerBean implements AuctionService {
     @Override
     public Map<String, AuctionItem> getAllAuctionItems() {
         return auctionItems;
+    }
+
+    @Override
+    public boolean isAuctionActive(String auctionID) {
+        AuctionItem item = getAuctionItem(auctionID);
+        LocalDateTime now = LocalDateTime.now();
+
+        boolean isActive = (now.isEqual(item.getStartTime()) || now.isAfter(item.getStartTime())) && now.isBefore(item.getEndTime());
+
+        System.out.println("Checking if auction " + auctionID + " is active: " + isActive);
+        return isActive;
     }
 }

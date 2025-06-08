@@ -43,6 +43,15 @@ public class BidManagerBean implements BidService {
         if (auctionItem != null && userData != null) {
             Bidder newBid = new Bidder(userData, auctionItem, id, bidAmount, timestamp);
             bidders.put(id, newBid);
+            System.out.println("new added: "
+                    + newBid.getUser().getEmail()
+                    + "\n"
+                    + newBid.getItem().getTitle()
+                    + "\n"
+                    + newBid.getBidAmount()
+                    + "\n"
+                    + newBid.getBidDate()
+            );
             return newBid;
         }
         return null;

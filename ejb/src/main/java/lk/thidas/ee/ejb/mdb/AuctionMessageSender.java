@@ -17,7 +17,7 @@ public class AuctionMessageSender {
 
     public void sendAuctionUpdate(String jsonMessage) {
         context.createProducer().send(auctionTopic, jsonMessage);
-        System.out.println("✅ Sent JMS message: " + jsonMessage);
+        System.out.println("Sent JMS message: " + jsonMessage);
     }
 
 }

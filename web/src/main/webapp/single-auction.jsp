@@ -13,6 +13,7 @@
             onload="this.rel='stylesheet'"
             rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style>
         .font-plus-jakarta-sans {
@@ -148,7 +149,7 @@
 
                     <%--                form--%>
                     <div class="mt-10">
-                        <form>
+                        <div>
                             <div class="grid grid-cols-3 gap-4 items-end">
                                 <div class="col-span-2">
                                     <label
@@ -160,7 +161,7 @@
                                         <div
                                                 class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
                                         >
-                                            <span class="text-gray-500 sm:text-sm">$</span>
+                                            <span class="text-gray-500 sm:text-sm">LKR</span>
                                         </div>
                                         <input
                                                 class="focus:ring-primary-color focus:border-primary-color block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100 cursor-not-allowed"
@@ -169,7 +170,7 @@
                                                 min="0"
                                                 name="bid-amount"
                                                 placeholder="0"
-                                                step="1"
+                                                step="100"
                                                 type="number"
                                         />
                                     </div>
@@ -177,8 +178,8 @@
                                 <button
                                         class="flex w-full items-center justify-center rounded-md border border-transparent bg-gray-300 px-6 py-3 text-base font-medium text-gray-500 cursor-not-allowed"
                                         disabled=""
-                                        type="submit"
                                         id="bid-place-button"
+                                        onclick="placeBid()"
                                 >
                                     Place Bid
                                 </button>
@@ -190,7 +191,7 @@
                                         type="button"
                                         id="quick-bid-1"
                                 >
-                                    Quick Bid: $0
+                                    Quick Bid: LKR 0
                                 </button>
                                 <button
                                         class="w-full rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400 cursor-not-allowed"
@@ -198,7 +199,7 @@
                                         type="button"
                                         id="quick-bid-2"
                                 >
-                                    Quick Bid: $0
+                                    Quick Bid: LKR 0
                                 </button>
                                 <button
                                         class="w-full rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400 cursor-not-allowed"
@@ -206,10 +207,10 @@
                                         type="button"
                                         id="quick-bid-3"
                                 >
-                                    Quick Bid: $0
+                                    Quick Bid: LKR 0
                                 </button>
                             </div>
-                        </form>
+                        </div>
                     </div>
 
                 </div>
@@ -234,7 +235,7 @@
                                     <p class="text-xs text-gray-500">2 hours ago</p>
                                 </div>
                             </div>
-                            <p class="text-lg font-bold text-primary-color">$450</p>
+                            <p class="text-lg font-bold text-primary-color">LKR 450</p>
                         </div>
                     </template>
 
@@ -383,8 +384,9 @@
         </div>
     </footer>
 </div>
+<script src="assets/scripts/bidPlace.js"></script>
 <script src="assets/scripts/singleAuction.js"></script>
 <script src="assets/scripts/auctionWebSocket.js"></script>
-<script src="assets/scripts/bidPlace.js"></script
+<script src="assets/scripts/session.js"></script>
 </body>
 </html>

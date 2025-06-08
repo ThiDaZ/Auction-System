@@ -36,6 +36,13 @@ async function loadUser() {
                 if (userNavWrapper) {
                     userNavWrapper.classList.add("hidden");
                 }
+
+                // Redirect to index.jsp if on single-auction.jsp without a session
+                const currentPage = window.location.pathname;
+                if (currentPage.endsWith("single-auction.jsp")) {
+                    window.location.href = 'index.jsp';
+                    alert("First, log in to the system to access the auction.")
+                }
             }
         }
     } catch (e) {
