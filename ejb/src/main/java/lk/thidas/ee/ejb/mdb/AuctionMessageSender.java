@@ -12,7 +12,7 @@ public class AuctionMessageSender {
     private static final String BROKER_URL = "tcp://localhost:61616";
     private static final String TOPIC_NAME = "activemqTopic";
 
-    public void sendBidUpdate(String jsonMessage) {
+    public void sendMessage(String jsonMessage) {
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(BROKER_URL);
         Connection connection = null;
         Session session = null;
@@ -29,7 +29,7 @@ public class AuctionMessageSender {
                 producer.setDeliveryMode(DeliveryMode.PERSISTENT);
                 producer.send(message);
 
-                System.out.println("✅ Message sent successfully to topic: " + TOPIC_NAME);
+                System.out.println("Message sent successfully to topic: " + TOPIC_NAME);
             }
 
         } catch (JMSException e) {
@@ -46,29 +46,6 @@ public class AuctionMessageSender {
         }
     }
 
-//    public static void main(String[] args) {
-//        AuctionMessageSender sender = new AuctionMessageSender();
-//        String exampleMessage = "{\"auctionId\":101,\"bid\":5000,\"user\":\"Alice\"}";
-//
-//        sender.sendBidUpdate(exampleMessage);
-//    }
 
-
-//    @Inject
-//    @JMSConnectionFactory("jakarta.jms.Topic")
-//    private JMSContext context;
-//
-//    @Resource(lookup = "activemqTopic")
-//    private Topic auctionTopic;
-//
-//    public void sendAuctionUpdate(String jsonMessage) {
-//        context.createProducer().send(auctionTopic, jsonMessage);
-//        System.out.println("Sent JMS message: " + jsonMessage);
-//    }
-//
-//    public void sendBidUpdate(String jsonMessage) {
-//        context.createProducer().send(auctionTopic, jsonMessage);
-//        System.out.println("Sent JMS message: " + jsonMessage);
-//    }
 
 }

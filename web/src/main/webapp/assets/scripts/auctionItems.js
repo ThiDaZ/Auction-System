@@ -6,7 +6,6 @@ async function getAllAuction() {
 
             if (json.success) {
                 const auctions = json.content;
-                console.log(auctions)
                 generateCard(auctions);
 
             } else {

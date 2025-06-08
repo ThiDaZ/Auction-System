@@ -19,7 +19,6 @@ public class UserManagerBean implements UserService {
         registerUser("Alice", "alice@example.com", "123");
         registerUser("Bob", "bob@example.com", "123");
         registerUser("Charlie", "charlie@example.com", "123");
-        System.out.println("Sample users registered.");
     }
 
     @Override

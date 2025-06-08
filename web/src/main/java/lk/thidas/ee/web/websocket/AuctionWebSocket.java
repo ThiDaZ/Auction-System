@@ -19,7 +19,6 @@ public class AuctionWebSocket {
 
     @OnOpen
     public void onOpen(Session session) {
-        sessionHandler.sendToSession(session, "Welcome to the Auction System");
         System.out.println("New connection: " + session.getId());
     }
 
@@ -31,13 +30,13 @@ public class AuctionWebSocket {
 
     @OnMessage
     public void onMessage(String message, Session session) {
-        System.out.println("Message received: " + message);
+        System.out.println("Session Create Message received: " + message);
         try {
             JsonObject msg = Json.createReader(new StringReader(message)).readObject();
 
             if (msg.containsKey("type") && "subscribe".equals(msg.getString("type"))) {
-                if (msg.containsKey("auctionId")) {
-                    String auctionID = msg.getString("auctionId");
+                if (msg.containsKey("auctionID_sub")) {
+                    String auctionID = msg.getString("auctionID_sub");
                     sessionHandler.addSession(session, auctionID);
                     System.out.println("Session " + session.getId() + " subscribed to auction " + auctionID);
                 }

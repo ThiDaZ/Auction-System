@@ -55,7 +55,13 @@ public class BidManagerBean implements BidService {
             );
 
             AuctionMessageSender sender = new AuctionMessageSender();
-            sender.sendBidUpdate("{ \"auctionId\": " + auctionId + ", \"bid\": " + newBid.getBidAmount() + " }");
+            sender.sendMessage(
+                    "{ " +
+                            "\"auctionId\": \"" + auctionId + "\", " +
+                            "\"bid\": \"" + newBid.getBidAmount() + "\", " +
+                            "\"email\": \"" + newBid.getUser().getEmail() + "\", " +
+                            "\"time\": \"" + newBid.getBidDate() + "\"" +
+                            "}");
 
             return newBid;
         }

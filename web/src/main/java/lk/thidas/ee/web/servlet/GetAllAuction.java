@@ -30,8 +30,6 @@ public class GetAllAuction extends HttpServlet {
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .create();
         Response_DTO responseDto = new Response_DTO();
-        System.out.println("getAllAuction");
-
 
         Map<String, AuctionItem> auctionItems = auctionService.getAllAuctionItems();
 

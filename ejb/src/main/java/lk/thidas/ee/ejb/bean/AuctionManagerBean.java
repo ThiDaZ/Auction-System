@@ -43,7 +43,6 @@ public class AuctionManagerBean implements AuctionService {
         addAuctionItem(new AuctionItem("Vintage Vinyl Records", "Collection of classic rock vinyl records", 40.00, now.plusDays(5).plusHours(12), now.plusDays(6)));
         addAuctionItem(new AuctionItem("Sports Memorabilia", "Signed baseball from championship game", 180.00, now.minusHours(4), now.plusDays(1)));
 
-        System.out.println("Sample auction items created.");
     }
 
     @Override

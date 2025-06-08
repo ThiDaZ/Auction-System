@@ -1,10 +1,10 @@
+
 async function getAuction() {
 
     const parameter = new URLSearchParams(window.location.search);
 
     if (parameter.has("id")) {
         const id = parameter.get("id");
-        console.log(id);
         try {
             const response = await fetch("getAuction?id=" + id)
 
@@ -12,9 +12,7 @@ async function getAuction() {
                 const json = await response.json();
                 if (json.success) {
                     loadAuction(json.content);
-                    console.log(json.content);
                 }
-                console.log(json);
             }
 
         } catch (e) {
@@ -67,7 +65,6 @@ function startCountdownUpdater(startTime, endTime) {
 
             switch (timeduration.status) {
                 case "upcoming": {
-                    console.log("upcoming");
                     const template = document.getElementById("upcoming-card");
                     isFormEnable(false);
                     bidHistoryWrapper?.remove();
@@ -76,7 +73,6 @@ function startCountdownUpdater(startTime, endTime) {
                     break;
                 }
                 case "active": {
-                    console.log("active");
                     const template = document.getElementById("active-card");
                     isFormEnable(true);
                     cardWrapper.appendChild(template.content.cloneNode(true));
@@ -86,7 +82,6 @@ function startCountdownUpdater(startTime, endTime) {
                     break;
                 }
                 case "ended": {
-                    console.log("ended");
                     const template = document.getElementById("end-card");
                     isFormEnable("kill");
                     bidHistoryWrapper?.remove();
@@ -197,22 +192,6 @@ function formatDuration(ms) {
         seconds
     }
 }
-
-// function parseDateTime(dateTimeObj) {
-//     if (!dateTimeObj || !dateTimeObj.date || !dateTimeObj.time) {
-//         return new Date();
-//     }
-//
-//     const {date, time} = dateTimeObj;
-//     return new Date(
-//         date.year,
-//         date.month - 1,
-//         date.day,
-//         time.hour,
-//         time.minute,
-//         time.second
-//     );
-// }
 
 function parseDateTime(dateTimeStr) {
     if (!dateTimeStr) {

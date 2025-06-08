@@ -11,7 +11,6 @@ async function loadUser() {
                     return;
                 }
 
-                console.log(json);
                 // Hide login button
                 const loginButtonWrapper = document.getElementById("loginButtonWrapper");
                 if (loginButtonWrapper) {
@@ -25,7 +24,6 @@ async function loadUser() {
                     username.textContent = json.user.username;
                 }
             } else {
-                console.log(json);
                 // Show login button
                 const loginButtonWrapper = document.getElementById("loginButtonWrapper");
                 if (loginButtonWrapper) {
@@ -75,7 +73,6 @@ async function login() {
                 document.getElementById("errorMessageWrapper").classList.remove("hidden");
                 document.getElementById("errorMessage").textContent = json.content
             }
-            console.log(json);
         }
 
 
@@ -112,7 +109,6 @@ async function signup() {
                 document.getElementById("errorMessageWrapper").classList.remove("hidden");
                 document.getElementById("errorMessage").textContent = json.content
             }
-            console.log(json);
         }
 
     } catch (e) {
