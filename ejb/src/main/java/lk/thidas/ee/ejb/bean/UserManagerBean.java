@@ -1,6 +1,7 @@
 package lk.thidas.ee.ejb.bean;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.ejb.Stateless;
 import lk.thidas.ee.core.model.User;
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Startup
+@Singleton
 @Stateless
 public class UserManagerBean implements UserService {
     private Map<String, User> users = new ConcurrentHashMap<>();

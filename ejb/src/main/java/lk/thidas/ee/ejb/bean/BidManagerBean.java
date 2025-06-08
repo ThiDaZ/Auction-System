@@ -2,6 +2,7 @@ package lk.thidas.ee.ejb.bean;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import lk.thidas.ee.core.model.AuctionItem;
@@ -27,6 +28,7 @@ public class BidManagerBean implements BidService {
     @EJB
     private UserService userService;
 
+
     private Map<String, Bidder> bidders = new ConcurrentHashMap<>();
 
     @Override
@@ -47,7 +49,7 @@ public class BidManagerBean implements BidService {
                 return null;
             }
 
-            Bidder newBid = new Bidder(userData, auctionItem, id, bidAmount, timestamp);
+            Bidder newBid = new Bidder(userData, auctionId, auctionItem, id, bidAmount, timestamp);
             bidders.put(id, newBid);
 
             AuctionMessageSender sender = new AuctionMessageSender();
@@ -93,29 +95,58 @@ public class BidManagerBean implements BidService {
         if (item == null) {
             return null;
         }
+        System.out.println("highest bid pass 01");
 
         List<Bidder> itemBids = getAllBids(item);
         if (itemBids.isEmpty()) {
+            System.out.println("highest bid Empty");
+            return null;
+        }
+        System.out.println("highest bid pass 02");
+
+        return itemBids.stream()
+                .max(Comparator.comparingDouble(Bidder::getBidAmount))
+                .orElse(null);
+    }
+
+    @Override
+    public Bidder getHighestBid(String auctionId) {
+        if (auctionId == null || auctionId.isEmpty()) {
             return null;
         }
 
-        Bidder highestBid = itemBids.stream()
+        return bidders.values().stream()
+                .filter(bidder -> auctionId.equals(bidder.getAuctionId()))
                 .max(Comparator.comparingDouble(Bidder::getBidAmount))
                 .orElse(null);
-
-        return highestBid;
     }
+
 
     @Override
     public List<Bidder> getAllBids(AuctionItem item) {
         if (item == null) {
+            System.out.println("all bid null");
+            return List.of();
+        }
+
+        String auctionId = auctionService.getAuctionIdByItem(item);
+        if (auctionId == null) {
+            System.out.println("No auctionId found for given item");
             return List.of();
         }
 
         return bidders.values().stream()
-                .filter(bidder -> bidder.getItem().equals(item))
+                .filter(bidder -> auctionId.equals(bidder.getAuctionId()))
+                .sorted(Comparator.comparing(Bidder::getBidDate).reversed())
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Bidder> getAllBids(String auctionId) {
+        return bidders.values().stream()
+                .filter(bidder -> bidder.getAuctionId().equals(auctionId))
+                .sorted(Comparator.comparing(Bidder::getBidDate).reversed()) // Optional: latest bid first
+                .collect(Collectors.toList());
+    }
 
 }

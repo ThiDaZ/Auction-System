@@ -11,6 +11,7 @@ async function getAuction() {
                 const json = await response.json();
                 if (json.success) {
                     loadAuction(json.content);
+                    console.log(json.content)
                 }
             }
 
@@ -21,12 +22,12 @@ async function getAuction() {
     } else {
         window.location = "index.jsp";
     }
-
 }
 
-function loadAuction(item) {
+function loadAuction(data) {
+    const item = data.auction;
     const startTime = parseDateTime(item.startTime);
-    const endTime = parseDateTime(item.endTime)
+    const endTime = parseDateTime(item.endTime);
     startCountdownUpdater(startTime, endTime);
 
     document.getElementById("breadcrumbTitle").textContent = item.title;
@@ -34,11 +35,58 @@ function loadAuction(item) {
     document.getElementById("description").textContent = item.description;
 
     if(document.getElementById("before-active-card")){
-        document.getElementById("starting-bid").textContent = item.startBid;
+        document.getElementById("starting-bid").textContent = `LKR ${item.startBid}`;
+    }    
+    if (data.highest_bid) {
+        const highestBidElement = document.getElementById("highest-bid");
+        const highestBidderName = document.getElementById("highest-bidder-name");
+        const bidderInfoDiv = document.querySelector("#highest-bid-info .text-right");
+        const bidLabel = document.querySelector("#highest-bid-info h2");
+        const userBidElement = document.getElementById("user-bid");
+        const currentUserEmail = getCurrentUserEmail();
+        
+        if (highestBidElement) {
+            highestBidElement.textContent = `LKR ${data.highest_bid.amount}`;
+            
+            // If there's a bidder name, show bidder info, otherwise show as starting bid
+            if (data.highest_bid.bidder_name && highestBidderName) {
+                bidLabel.textContent = "Highest Bid";
+                bidderInfoDiv.style.display = "block";
+                highestBidderName.textContent = data.highest_bid.bidder_name;
+
+                // Update user's bid if they are the highest bidder
+                if (currentUserEmail && data.highest_bid.email === currentUserEmail && userBidElement) {
+                    userBidElement.textContent = `LKR ${data.highest_bid.amount}`;
+                }
+            } else {
+                bidLabel.textContent = "Starting Bid";
+                bidderInfoDiv.style.display = "none";
+            }
+        }
+        // Update the bid status to show correct status
+        setTimeout(bidStatusUpdate, 100);
     }
 
-    // Update quick bid buttons if the auction is active
+    if (data.bid_history && Array.isArray(data.bid_history)) {
+        const sortedBids = data.bid_history.sort((a, b) => 
+            new Date(b.bidDate) - new Date(a.bidDate)
+        );
+        
+        sortedBids.forEach(bid => {
+            const maskedEmail = bid.user.email.replace(/(.{1})(.*)(@.*)/, "$1***$3");
+            const bidData = {
+                user_name: maskedEmail,
+                bid_amount: bid.bidAmount,
+                bid_time: new Date(bid.bidDate),
+                email: bid.user.email
+            };
+            tableUpdate(bidData);
+        });
+    }
+
     updateQuickBidButtons();
+    
+    setTimeout(bidStatusUpdate, 100);
 }
 
 function startCountdownUpdater(startTime, endTime) {
@@ -76,8 +124,7 @@ function startCountdownUpdater(startTime, endTime) {
                     isFormEnable(true);
                     cardWrapper.appendChild(template.content.cloneNode(true));
                     timeStatusTitle.textContent = "Time Remaining ";
-                    // Update quick bid buttons when auction becomes active
-                    setTimeout(updateQuickBidButtons, 100); // Small delay to ensure DOM is updated
+                    setTimeout(updateQuickBidButtons, 100);
                     break;
                 }
                 case "ended": {
@@ -143,8 +190,6 @@ function isFormEnable(mode) {
     }
 }
 
-
-
 function getTimeduration(startTime, endTime) {
     const now = new Date();
 
@@ -194,7 +239,7 @@ function formatDuration(ms) {
 
 function parseDateTime(dateTimeStr) {
     if (!dateTimeStr) {
-        return new Date(); // fallback
+        return new Date();
     }
 
     return new Date(dateTimeStr);
@@ -205,6 +250,7 @@ function updateQuickBidButtons() {
     const quickBid1 = document.getElementById("quick-bid-1");
     const quickBid2 = document.getElementById("quick-bid-2");
     const quickBid3 = document.getElementById("quick-bid-3");
+    const bidAmount = document.getElementById("bid-amount");
 
     if (highestBidElement && quickBid1 && quickBid2 && quickBid3) {
         const highestBidText = highestBidElement.textContent.trim();
@@ -214,10 +260,13 @@ function updateQuickBidButtons() {
             const quickBid1Amount = highestBid + 500;
             const quickBid2Amount = highestBid + 1000;
             const quickBid3Amount = highestBid + 1500;
+            const bidAmountValue = highestBid;
 
             quickBid1.textContent = `Quick Bid: LKR ${quickBid1Amount}`;
             quickBid2.textContent = `Quick Bid: LKR ${quickBid2Amount}`;
             quickBid3.textContent = `Quick Bid: LKR ${quickBid3Amount}`;
+            bidAmount.min = bidAmountValue ? bidAmountValue : 0;
+            bidAmount.placeholder = bidAmountValue;
 
             quickBid1.onclick = () => placeQuickBid(1);
             quickBid2.onclick = () => placeQuickBid(2);
@@ -228,12 +277,10 @@ function updateQuickBidButtons() {
 
 function tableUpdate(data) {
     const tableContainer = document.getElementById("bid-table-container");
+    if (!tableContainer) return;
+    
     const template = document.getElementById("bid-row-template");
     const clone = template.content.cloneNode(true);
-
-    const email = data.email;
-    const maskedEmail = email.replace(/(.{1})(.*)(@.*)/, "$1***$3");
-    const userName = maskedEmail;
 
     const bidAmount = parseFloat(data.bid_amount);
     if (isNaN(bidAmount)) {
@@ -241,16 +288,24 @@ function tableUpdate(data) {
         return;
     }
 
-    const date = new Date(data.bid_time);
-    
     const userNameElement = clone.querySelector("#user_name");
     const bidAmountElement = clone.querySelector("#bid_amount");
     const bidTimeElement = clone.querySelector("#bid_time");
 
     if (userNameElement && bidAmountElement && bidTimeElement) {
-        userNameElement.textContent = userName;
+        if (!data.user_name && data.email) {
+            data.user_name = data.email.replace(/(.{1})(.*)(@.*)/, "$1***$3");
+        }
+        
+        userNameElement.textContent = data.user_name;
         bidAmountElement.textContent = `LKR ${bidAmount}`;
-        bidTimeElement.textContent = date;
+        bidTimeElement.textContent = formatTimestamp(data.bid_time);
+
+        const currentUserEmail = getCurrentUserEmail();
+        if (data.email === currentUserEmail) {
+            userNameElement.textContent += ' (You)';
+            bidAmountElement.classList.add('text-green-600');
+        }
     }
 
     if (tableContainer.firstChild) {
@@ -263,12 +318,17 @@ function tableUpdate(data) {
 function cardHighestBidUpdate(data) {
     const highestBidElement = document.getElementById("highest-bid");
     const highestBidderName = document.getElementById("highest-bidder-name");
+    const bidderInfoDiv = document.querySelector("#highest-bid-info .text-right");
+    const bidLabel = document.querySelector("#highest-bid-info h2");
 
-    if (highestBidElement && highestBidderName) {
+    if (highestBidElement) {
         highestBidElement.textContent = `LKR ${data.highest_bid_amount}`;
-        highestBidderName.textContent = data.user_name;
+        if (data.user_name && bidderInfoDiv && bidLabel && highestBidderName) {
+            bidLabel.textContent = "Highest Bid";
+            bidderInfoDiv.style.display = "block";
+            highestBidderName.textContent = data.user_name;
+        }
         bidStatusUpdate();
-        
     }
 }
 
@@ -280,7 +340,6 @@ function cardUpdate(data) {
     }
 
     const userBidElement = document.getElementById("user-bid");
-
 
     if (data.email === loggedInUserEmail) {
         if (userBidElement) {
@@ -308,7 +367,6 @@ function bidStatusUpdate() {
         currentBid = parseFloat(rawValue) || 0;
     }
 
-
     if (userStatusElement) {
         if (currentBid >= currentHighestBid) {
             userStatusElement.textContent = "Status: You are the highest bidder";
@@ -330,3 +388,18 @@ function getCurrentUserEmail() {
     return localStorage.getItem("userEmail");
 }
 
+function formatTimestamp(date) {
+    if (typeof date === 'string') {
+        date = new Date(date);
+    }
+    
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+
+    if (diffInSeconds < 60) return 'just now';
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+    if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} days ago`;
+    
+    return date.toLocaleDateString();
+}
