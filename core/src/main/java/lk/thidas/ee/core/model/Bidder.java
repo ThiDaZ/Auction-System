@@ -1,21 +1,25 @@
 package lk.thidas.ee.core.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Bidder implements Serializable {
     private User user;
     private AuctionItem item;
-    private int bidderId;
+    private String bidderId;
     private double bidAmount;
+    private LocalDateTime bidDate;
 
     public Bidder(){
     }
 
-    public Bidder(User user, AuctionItem item, int bidderId, double bidAmount) {
+    public Bidder(User user, AuctionItem item, String bidderId, double bidAmount, LocalDateTime bidDate) {
         this.user = user;
         this.item = item;
         this.bidderId = bidderId;
         this.bidAmount = bidAmount;
+        this.bidDate = bidDate;
     }
 
     public User getUser() {
@@ -34,11 +38,11 @@ public class Bidder implements Serializable {
         this.item = item;
     }
 
-    public int getBidderId() {
+    public String getBidderId() {
         return bidderId;
     }
 
-    public void setBidderId(int bidderId) {
+    public void setBidderId(String bidderId) {
         this.bidderId = bidderId;
     }
 
@@ -48,5 +52,13 @@ public class Bidder implements Serializable {
 
     public void setBidAmount(double bidAmount) {
         this.bidAmount = bidAmount;
+    }
+
+    public LocalDateTime getBidDate() {
+        return bidDate;
+    }
+
+    public void setBidDate(LocalDateTime bidDate) {
+        this.bidDate = bidDate;
     }
 }

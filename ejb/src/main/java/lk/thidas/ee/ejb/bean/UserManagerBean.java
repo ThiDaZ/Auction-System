@@ -22,7 +22,7 @@ public class UserManagerBean implements UserService {
         System.out.println("Sample users registered.");
     }
 
-
+    @Override
     public boolean registerUser(String username, String email, String password) {
         if (users.containsKey(email)) {
             return false;
@@ -32,6 +32,7 @@ public class UserManagerBean implements UserService {
         return true;
     }
 
+    @Override
     public User login(String email, String password) {
         if (users.containsKey(email)) {
             User user = users.get(email);
@@ -48,6 +49,11 @@ public class UserManagerBean implements UserService {
             System.out.println("User not found");
         }
         return null;
+    }
+
+    @Override
+    public User getUser(String email){
+        return users.get(email);
     }
 
 }
