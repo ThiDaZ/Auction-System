@@ -68,6 +68,7 @@ async function login() {
             if (json.success) {
                 window.location = "index.jsp";
                 document.getElementById("errorMessageWrapper").classList.add("hidden");
+                localStorage.setItem("userEmail", email);
 
             } else {
                 document.getElementById("errorMessageWrapper").classList.remove("hidden");

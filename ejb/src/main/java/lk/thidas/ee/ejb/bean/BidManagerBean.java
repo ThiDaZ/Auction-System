@@ -41,40 +41,27 @@ public class BidManagerBean implements BidService {
         User userData = userService.getUser(email);
 
         String id = UUID.randomUUID().toString();
-
         if (auctionItem != null && userData != null) {
+            Bidder highBid = getHighestBid(auctionItem);
+            if (highBid != null && bidAmount <= highBid.getBidAmount()) {
+                return null;
+            }
+
             Bidder newBid = new Bidder(userData, auctionItem, id, bidAmount, timestamp);
             bidders.put(id, newBid);
 
-            Bidder highBid = getHighestBid(auctionItem);
-
-
-            if (highBid != null && highBid.getBidAmount() < newBid.getBidAmount()) {
-                AuctionMessageSender sender = new AuctionMessageSender();
-                JsonObject highBidJson = Json.createObjectBuilder()
-                        .add("type", "highest_bid")
-                        .add("auctionId", auctionId)
-                        .add("user_name", newBid.getUser().getUsername())
-                        .add("highest_bid_amount", newBid.getBidAmount())
-                        .build();
-
-                sender.sendMessage(highBidJson.toString());
-                System.out.println("✅ Sent highest bid update");
-            }
-            System.out.println("pass 02");
-
-            System.out.println("new added: "
-                    + newBid.getUser().getEmail()
-                    + "\n"
-                    + newBid.getItem().getTitle()
-                    + "\n"
-                    + newBid.getBidAmount()
-                    + "\n"
-                    + newBid.getBidDate()
-            );
-
             AuctionMessageSender sender = new AuctionMessageSender();
+            JsonObject highBidJson = Json.createObjectBuilder()
+                    .add("type", "highest_bid")
+                    .add("auctionId", auctionId)
+                    .add("user_name", newBid.getUser().getUsername())
+                    .add("highest_bid_amount", newBid.getBidAmount())
+                    .add("email", newBid.getUser().getEmail())
+                    .build();
+            sender.sendMessage(highBidJson.toString());
 
+
+            AuctionMessageSender sender2 = new AuctionMessageSender();
             JsonObject json = Json.createObjectBuilder()
                     .add("type", "update_bid")
                     .add("auctionId", auctionId)
@@ -84,9 +71,18 @@ public class BidManagerBean implements BidService {
                     .add("bid_time", newBid.getBidDate().toString())
                     .build();
 
-            sender.sendMessage(json.toString());
+            sender2.sendMessage(json.toString());
 
+            System.out.println("new added: "
+                    + newBid.getUser().getEmail()
+                    + "\n"
+                    + newBid.getItem().getTitle()
+                    + "\n"
+                    + newBid.getBidAmount()
+                    + "\n"
+                    + newBid.getBidDate());
 
+            System.out.println("✅ Sent highest bid update");
             return newBid;
         }
         return null;
