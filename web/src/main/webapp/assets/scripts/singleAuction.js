@@ -40,6 +40,8 @@ function loadAuction(item) {
         document.getElementById("starting-bid").textContent = item.startBid;
     }
 
+    // Update quick bid buttons if the auction is active
+    updateQuickBidButtons();
 }
 
 function startCountdownUpdater(startTime, endTime) {
@@ -79,6 +81,8 @@ function startCountdownUpdater(startTime, endTime) {
                     isFormEnable(true);
                     cardWrapper.appendChild(template.content.cloneNode(true));
                     timeStatusTitle.textContent = "Time Remaining ";
+                    // Update quick bid buttons when auction becomes active
+                    setTimeout(updateQuickBidButtons, 100); // Small delay to ensure DOM is updated
                     break;
                 }
                 case "ended": {
@@ -216,4 +220,35 @@ function parseDateTime(dateTimeStr) {
     }
 
     return new Date(dateTimeStr);
+}
+
+function updateQuickBidButtons() {
+    const highestBidElement = document.getElementById("highest-bid");
+    const quickBid1 = document.getElementById("quick-bid-1");
+    const quickBid2 = document.getElementById("quick-bid-2");
+    const quickBid3 = document.getElementById("quick-bid-3");
+
+    // Only update if the auction is active and the highest bid element exists
+    if (highestBidElement && quickBid1 && quickBid2 && quickBid3) {
+        // Extract the numeric value from the highest bid text (remove "LKR " prefix)
+        const highestBidText = highestBidElement.textContent.trim();
+        const highestBid = parseFloat(highestBidText.replace("LKR ", ""));
+
+        if (!isNaN(highestBid)) {
+            // Calculate the three quick bid amounts
+            const quickBid1Amount = highestBid + 500;
+            const quickBid2Amount = highestBid + 1000;
+            const quickBid3Amount = highestBid + 1500;
+
+            // Update the text of the quick bid buttons
+            quickBid1.textContent = `Quick Bid: LKR ${quickBid1Amount}`;
+            quickBid2.textContent = `Quick Bid: LKR ${quickBid2Amount}`;
+            quickBid3.textContent = `Quick Bid: LKR ${quickBid3Amount}`;
+
+            // Set the onclick handlers
+            quickBid1.onclick = () => placeQuickBid(1);
+            quickBid2.onclick = () => placeQuickBid(2);
+            quickBid3.onclick = () => placeQuickBid(3);
+        }
+    }
 }
