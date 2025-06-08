@@ -1,10 +1,10 @@
+
 async function getAuction() {
 
     const parameter = new URLSearchParams(window.location.search);
 
     if (parameter.has("id")) {
         const id = parameter.get("id");
-        console.log(id);
         try {
             const response = await fetch("getAuction?id=" + id)
 
@@ -12,9 +12,7 @@ async function getAuction() {
                 const json = await response.json();
                 if (json.success) {
                     loadAuction(json.content);
-                    console.log(json.content);
                 }
-                console.log(json);
             }
 
         } catch (e) {
@@ -40,6 +38,8 @@ function loadAuction(item) {
         document.getElementById("starting-bid").textContent = item.startBid;
     }
 
+    // Update quick bid buttons if the auction is active
+    updateQuickBidButtons();
 }
 
 function startCountdownUpdater(startTime, endTime) {
@@ -65,7 +65,6 @@ function startCountdownUpdater(startTime, endTime) {
 
             switch (timeduration.status) {
                 case "upcoming": {
-                    console.log("upcoming");
                     const template = document.getElementById("upcoming-card");
                     isFormEnable(false);
                     bidHistoryWrapper?.remove();
@@ -74,15 +73,15 @@ function startCountdownUpdater(startTime, endTime) {
                     break;
                 }
                 case "active": {
-                    console.log("active");
                     const template = document.getElementById("active-card");
                     isFormEnable(true);
                     cardWrapper.appendChild(template.content.cloneNode(true));
                     timeStatusTitle.textContent = "Time Remaining ";
+                    // Update quick bid buttons when auction becomes active
+                    setTimeout(updateQuickBidButtons, 100); // Small delay to ensure DOM is updated
                     break;
                 }
                 case "ended": {
-                    console.log("ended");
                     const template = document.getElementById("end-card");
                     isFormEnable("kill");
                     bidHistoryWrapper?.remove();
@@ -112,8 +111,8 @@ function isFormEnable(mode) {
     const activeClassQuick = "w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-1";
     const disableClassQuick = "w-full rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400 cursor-not-allowed";
 
-    const activeInput = "focus:ring-primary-color focus:border-primary-color block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md";
-    const disableInput = "focus:ring-primary-color focus:border-primary-color block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100 cursor-not-allowed";
+    const activeInput = "focus:ring-primary-color focus:border-primary-color block w-full pl-10 pr-12 sm:text-sm border-gray-300 rounded-md";
+    const disableInput = "focus:ring-primary-color focus:border-primary-color block w-full pl-10 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100 cursor-not-allowed";
 
     const activePlaceButton = "flex w-full items-center justify-center rounded-md border border-transparent bg-primary-color px-6 py-3 text-base font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-offset-2 transition-colors";
     const disablePlaceButton = "flex w-full items-center justify-center rounded-md border border-transparent bg-gray-300 px-6 py-3 text-base font-medium text-gray-500 cursor-not-allowed";
@@ -194,26 +193,41 @@ function formatDuration(ms) {
     }
 }
 
-// function parseDateTime(dateTimeObj) {
-//     if (!dateTimeObj || !dateTimeObj.date || !dateTimeObj.time) {
-//         return new Date();
-//     }
-//
-//     const {date, time} = dateTimeObj;
-//     return new Date(
-//         date.year,
-//         date.month - 1,
-//         date.day,
-//         time.hour,
-//         time.minute,
-//         time.second
-//     );
-// }
-
 function parseDateTime(dateTimeStr) {
     if (!dateTimeStr) {
         return new Date(); // fallback
     }
 
     return new Date(dateTimeStr);
+}
+
+function updateQuickBidButtons() {
+    const highestBidElement = document.getElementById("highest-bid");
+    const quickBid1 = document.getElementById("quick-bid-1");
+    const quickBid2 = document.getElementById("quick-bid-2");
+    const quickBid3 = document.getElementById("quick-bid-3");
+
+    // Only update if the auction is active and the highest bid element exists
+    if (highestBidElement && quickBid1 && quickBid2 && quickBid3) {
+        // Extract the numeric value from the highest bid text (remove "LKR " prefix)
+        const highestBidText = highestBidElement.textContent.trim();
+        const highestBid = parseFloat(highestBidText.replace("LKR ", ""));
+
+        if (!isNaN(highestBid)) {
+            // Calculate the three quick bid amounts
+            const quickBid1Amount = highestBid + 500;
+            const quickBid2Amount = highestBid + 1000;
+            const quickBid3Amount = highestBid + 1500;
+
+            // Update the text of the quick bid buttons
+            quickBid1.textContent = `Quick Bid: LKR ${quickBid1Amount}`;
+            quickBid2.textContent = `Quick Bid: LKR ${quickBid2Amount}`;
+            quickBid3.textContent = `Quick Bid: LKR ${quickBid3Amount}`;
+
+            // Set the onclick handlers
+            quickBid1.onclick = () => placeQuickBid(1);
+            quickBid2.onclick = () => placeQuickBid(2);
+            quickBid3.onclick = () => placeQuickBid(3);
+        }
+    }
 }

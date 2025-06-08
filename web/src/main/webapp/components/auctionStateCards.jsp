@@ -9,7 +9,7 @@
                 <p class="mt-1 text-5xl font-extrabold text-primary-color"
                    id="highest-bid"
                 >
-                    $450
+                    LKR 450
                 </p>
             </div>
             <div class="text-right">
@@ -31,13 +31,13 @@
             <h2 class="text-sm font-medium text-gray-600">
                 Your Bid
             </h2>
-            <p class="mt-1 text-3xl font-bold text-green-600" id="user-bid">$420</p>
+            <p class="mt-1 text-3xl font-bold text-green-600" id="user-bid">LKR 420</p>
             <p class="mt-1 text-xs text-gray-500" id="user-bidder-status">
                 <strong>Status:</strong> You are the highest bidder.
             </p>
         </div>
         <p class="mt-2 text-sm text-gray-500">
-            Minimum bid increment: $5
+            Minimum bid increment: LKR 500
         </p>
     </div>
 </template>
@@ -50,7 +50,7 @@
                 Winning Bid
             </h2>
             <p class="mt-1 text-5xl font-extrabold text-green-600" id="winning-bid">
-                $550
+                LKR 550
             </p>
         </div>
         <div class="text-sm text-gray-700">
@@ -74,7 +74,7 @@
             </h2>
             <p class="mt-1 text-5xl font-extrabold text-primary-color" id="starting-bid"
             >
-                $400
+                LKR 400
             </p>
         </div>
     </div>

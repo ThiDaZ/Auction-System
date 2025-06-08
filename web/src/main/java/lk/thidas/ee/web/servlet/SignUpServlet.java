@@ -26,14 +26,12 @@ public class SignUpServlet extends HttpServlet {
         Response_DTO response = new Response_DTO();
 
         User_DTO user_dto = gson.fromJson(req.getReader(), User_DTO.class);
-        System.out.println(user_dto.getEmail() + " " + user_dto.getPassword() + " " + user_dto.getUsername() + " " + user_dto.getConfirmPassword());
 
         if (user_dto.getPassword().equals(user_dto.getConfirmPassword())) {
             if (userManager.registerUser(user_dto.getUsername(), user_dto.getEmail(), user_dto.getPassword())) {
                 response.setSuccess(true);
                 response.setContent("You have been registered successfully, login again.");
             } else {
-                System.out.println("User already exists");
                 response.setSuccess(false);
                 response.setContent("User already exists");
             }

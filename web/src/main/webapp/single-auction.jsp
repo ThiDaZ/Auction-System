@@ -13,6 +13,8 @@
             onload="this.rel='stylesheet'"
             rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+          rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style>
         .font-plus-jakarta-sans {
@@ -37,6 +39,7 @@
     </style>
 </head>
 <body onload="getAuction()" class="font-plus-jakarta-sans bg-gray-50 text-gray-900">
+<script src="assets/scripts/auctionWebSocket.js"></script>
 <div class="relative flex min-h-screen flex-col">
     <%@ include file="/components/header.jsp" %>
     <main class="container mx-auto flex-1 px-4 py-8 sm:px-6 lg:px-8">
@@ -148,7 +151,7 @@
 
                     <%--                form--%>
                     <div class="mt-10">
-                        <form>
+                        <div>
                             <div class="grid grid-cols-3 gap-4 items-end">
                                 <div class="col-span-2">
                                     <label
@@ -160,16 +163,16 @@
                                         <div
                                                 class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
                                         >
-                                            <span class="text-gray-500 sm:text-sm">$</span>
+                                            <span class="text-gray-500 sm:text-sm">LKR</span>
                                         </div>
                                         <input
-                                                class="focus:ring-primary-color focus:border-primary-color block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100 cursor-not-allowed"
+                                                class="focus:ring-primary-color focus:border-primary-color block w-full pl-10 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100 cursor-not-allowed"
                                                 disabled=""
                                                 id="bid-amount"
                                                 min="0"
                                                 name="bid-amount"
                                                 placeholder="0"
-                                                step="1"
+                                                step="100"
                                                 type="number"
                                         />
                                     </div>
@@ -177,8 +180,8 @@
                                 <button
                                         class="flex w-full items-center justify-center rounded-md border border-transparent bg-gray-300 px-6 py-3 text-base font-medium text-gray-500 cursor-not-allowed"
                                         disabled=""
-                                        type="submit"
                                         id="bid-place-button"
+                                        onclick="placeBid()"
                                 >
                                     Place Bid
                                 </button>
@@ -190,7 +193,7 @@
                                         type="button"
                                         id="quick-bid-1"
                                 >
-                                    Quick Bid: $0
+                                    Quick Bid: LKR 0
                                 </button>
                                 <button
                                         class="w-full rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400 cursor-not-allowed"
@@ -198,7 +201,7 @@
                                         type="button"
                                         id="quick-bid-2"
                                 >
-                                    Quick Bid: $0
+                                    Quick Bid: LKR 0
                                 </button>
                                 <button
                                         class="w-full rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400 cursor-not-allowed"
@@ -206,10 +209,10 @@
                                         type="button"
                                         id="quick-bid-3"
                                 >
-                                    Quick Bid: $0
+                                    Quick Bid: LKR 0
                                 </button>
                             </div>
-                        </form>
+                        </div>
                     </div>
 
                 </div>
@@ -234,140 +237,140 @@
                                     <p class="text-xs text-gray-500">2 hours ago</p>
                                 </div>
                             </div>
-                            <p class="text-lg font-bold text-primary-color">$450</p>
+                            <p class="text-lg font-bold text-primary-color">LKR 450</p>
                         </div>
                     </template>
 
-<%--                    <div--%>
-<%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
-<%--                    >--%>
-<%--                        <div class="flex items-center">--%>
-<%--                            <img--%>
-<%--                                    alt="Bidder Avatar"--%>
-<%--                                    class="h-10 w-10 rounded-full mr-4"--%>
-<%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0aQ7ywJwNOwimvhqnmOEKZEZ9TXH2GHdZh0FmkP70H2wkqODEIy3oOhqrGvupNuQJeBxicnu6LZXf2l0xDQYLplQMvP3hNlcPC1JDA8lSI1rla3WIosh9Q7QQC1iiSiSzA7Gom06uSoz9ZknoFV8GARPFB6FvlmHVM3fR5IVLjVMnOyCP3c-a4xootETXqwjoPJ71roYkWGuut6OD_jJk2gGeDRHXBmd7IcZQXxFhF-ZBwtbprmZy9VESaq2CGqN6NWQlbaiFQVw"--%>
-<%--                            />--%>
-<%--                            <div>--%>
-<%--                                <p class="text-sm font-semibold text-gray-800">--%>
-<%--                                    Jane S. (You)--%>
-<%--                                </p>--%>
-<%--                                <p class="text-xs text-gray-500">5 hours ago</p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <p class="text-lg font-semibold text-green-600">$420</p>--%>
-<%--                    </div>--%>
-<%--                    <div--%>
-<%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
-<%--                    >--%>
-<%--                        <div class="flex items-center">--%>
-<%--                            <img--%>
-<%--                                    alt="Bidder Avatar"--%>
-<%--                                    class="h-10 w-10 rounded-full mr-4"--%>
-<%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
-<%--                            />--%>
-<%--                            <div>--%>
-<%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
-<%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
-<%--                    </div>--%>
-<%--                    <div--%>
-<%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
-<%--                    >--%>
-<%--                        <div class="flex items-center">--%>
-<%--                            <img--%>
-<%--                                    alt="Bidder Avatar"--%>
-<%--                                    class="h-10 w-10 rounded-full mr-4"--%>
-<%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
-<%--                            />--%>
-<%--                            <div>--%>
-<%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
-<%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
-<%--                    </div>--%>
-<%--                    <div--%>
-<%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
-<%--                    >--%>
-<%--                        <div class="flex items-center">--%>
-<%--                            <img--%>
-<%--                                    alt="Bidder Avatar"--%>
-<%--                                    class="h-10 w-10 rounded-full mr-4"--%>
-<%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
-<%--                            />--%>
-<%--                            <div>--%>
-<%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
-<%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
-<%--                    </div>--%>
-<%--                    <div--%>
-<%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
-<%--                    >--%>
-<%--                        <div class="flex items-center">--%>
-<%--                            <img--%>
-<%--                                    alt="Bidder Avatar"--%>
-<%--                                    class="h-10 w-10 rounded-full mr-4"--%>
-<%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
-<%--                            />--%>
-<%--                            <div>--%>
-<%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
-<%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
-<%--                    </div>--%>
-<%--                    <div--%>
-<%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
-<%--                    >--%>
-<%--                        <div class="flex items-center">--%>
-<%--                            <img--%>
-<%--                                    alt="Bidder Avatar"--%>
-<%--                                    class="h-10 w-10 rounded-full mr-4"--%>
-<%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
-<%--                            />--%>
-<%--                            <div>--%>
-<%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
-<%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
-<%--                    </div>--%>
-<%--                    <div--%>
-<%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
-<%--                    >--%>
-<%--                        <div class="flex items-center">--%>
-<%--                            <img--%>
-<%--                                    alt="Bidder Avatar"--%>
-<%--                                    class="h-10 w-10 rounded-full mr-4"--%>
-<%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
-<%--                            />--%>
-<%--                            <div>--%>
-<%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
-<%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
-<%--                    </div>--%>
-<%--                    <div--%>
-<%--                            class="flex items-center justify-between pb-4 last:border-b-0 last:pb-0"--%>
-<%--                    >--%>
-<%--                        <div class="flex items-center">--%>
-<%--                            <img--%>
-<%--                                    alt="Bidder Avatar"--%>
-<%--                                    class="h-10 w-10 rounded-full mr-4"--%>
-<%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0W5BQJxnyBXrb3aLLXx4W7Qm0PXnoB3RiuyeISHMVVi_187sE3IpE0IiJg4Pvq6Pt4XUbqjhTWgynt5WgNltCqLWP8gbqRX6m1Hxp_jKVzpqFawEyS_zHGkUngf-JtCDL01VV3Fw-L5mjdsofQYXHH5CTFne6bgfVBY18IZDsC2M3ipWJqSFYyIFVqud9O1L6Nk3r3kliCGz63FXnoMRxyYIOLnJ3YhwVkiUSWAUPvSRuUT-VXrtBU9oARNBGgcgXTvPlhuRfsqY"--%>
-<%--                            />--%>
-<%--                            <div>--%>
-<%--                                <p class="text-sm font-semibold text-gray-800">Sarah L.</p>--%>
-<%--                                <p class="text-xs text-gray-500">2 days ago</p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <p class="text-lg font-semibold text-gray-700">$380</p>--%>
-<%--                    </div>--%>
+                    <%--                    <div--%>
+                    <%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
+                    <%--                    >--%>
+                    <%--                        <div class="flex items-center">--%>
+                    <%--                            <img--%>
+                    <%--                                    alt="Bidder Avatar"--%>
+                    <%--                                    class="h-10 w-10 rounded-full mr-4"--%>
+                    <%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0aQ7ywJwNOwimvhqnmOEKZEZ9TXH2GHdZh0FmkP70H2wkqODEIy3oOhqrGvupNuQJeBxicnu6LZXf2l0xDQYLplQMvP3hNlcPC1JDA8lSI1rla3WIosh9Q7QQC1iiSiSzA7Gom06uSoz9ZknoFV8GARPFB6FvlmHVM3fR5IVLjVMnOyCP3c-a4xootETXqwjoPJ71roYkWGuut6OD_jJk2gGeDRHXBmd7IcZQXxFhF-ZBwtbprmZy9VESaq2CGqN6NWQlbaiFQVw"--%>
+                    <%--                            />--%>
+                    <%--                            <div>--%>
+                    <%--                                <p class="text-sm font-semibold text-gray-800">--%>
+                    <%--                                    Jane S. (You)--%>
+                    <%--                                </p>--%>
+                    <%--                                <p class="text-xs text-gray-500">5 hours ago</p>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                        <p class="text-lg font-semibold text-green-600">$420</p>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div--%>
+                    <%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
+                    <%--                    >--%>
+                    <%--                        <div class="flex items-center">--%>
+                    <%--                            <img--%>
+                    <%--                                    alt="Bidder Avatar"--%>
+                    <%--                                    class="h-10 w-10 rounded-full mr-4"--%>
+                    <%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
+                    <%--                            />--%>
+                    <%--                            <div>--%>
+                    <%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
+                    <%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div--%>
+                    <%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
+                    <%--                    >--%>
+                    <%--                        <div class="flex items-center">--%>
+                    <%--                            <img--%>
+                    <%--                                    alt="Bidder Avatar"--%>
+                    <%--                                    class="h-10 w-10 rounded-full mr-4"--%>
+                    <%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
+                    <%--                            />--%>
+                    <%--                            <div>--%>
+                    <%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
+                    <%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div--%>
+                    <%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
+                    <%--                    >--%>
+                    <%--                        <div class="flex items-center">--%>
+                    <%--                            <img--%>
+                    <%--                                    alt="Bidder Avatar"--%>
+                    <%--                                    class="h-10 w-10 rounded-full mr-4"--%>
+                    <%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
+                    <%--                            />--%>
+                    <%--                            <div>--%>
+                    <%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
+                    <%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div--%>
+                    <%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
+                    <%--                    >--%>
+                    <%--                        <div class="flex items-center">--%>
+                    <%--                            <img--%>
+                    <%--                                    alt="Bidder Avatar"--%>
+                    <%--                                    class="h-10 w-10 rounded-full mr-4"--%>
+                    <%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
+                    <%--                            />--%>
+                    <%--                            <div>--%>
+                    <%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
+                    <%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div--%>
+                    <%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
+                    <%--                    >--%>
+                    <%--                        <div class="flex items-center">--%>
+                    <%--                            <img--%>
+                    <%--                                    alt="Bidder Avatar"--%>
+                    <%--                                    class="h-10 w-10 rounded-full mr-4"--%>
+                    <%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
+                    <%--                            />--%>
+                    <%--                            <div>--%>
+                    <%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
+                    <%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div--%>
+                    <%--                            class="flex items-center justify-between border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"--%>
+                    <%--                    >--%>
+                    <%--                        <div class="flex items-center">--%>
+                    <%--                            <img--%>
+                    <%--                                    alt="Bidder Avatar"--%>
+                    <%--                                    class="h-10 w-10 rounded-full mr-4"--%>
+                    <%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe1eK4zNa6MpJdOSj_zQCGUDn1A0S9QFWVXSstwZ90JuyXKBT1wsYM_hJrXmmodGlJtPFL6zpPMQTlcRE1xdzA8o22eC3O6wphcLY5VphAsBO7YrGvOhQTscLkQWXY011ofW5OtbY_m1jh5FaFrHwZ2QipwLr6_P3MuCK9xSG_l-aHZctPpkBb0qdYB8ot8ZG_NdXDNaollUvrZC1x9eSeBfNqtZz40aboirvz3qMfel4v3khQ0BlGkq2YahdebL8zFuxnyVsIxY8"--%>
+                    <%--                            />--%>
+                    <%--                            <div>--%>
+                    <%--                                <p class="text-sm font-semibold text-gray-800">Mike B.</p>--%>
+                    <%--                                <p class="text-xs text-gray-500">1 day ago</p>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                        <p class="text-lg font-semibold text-gray-700">$400</p>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div--%>
+                    <%--                            class="flex items-center justify-between pb-4 last:border-b-0 last:pb-0"--%>
+                    <%--                    >--%>
+                    <%--                        <div class="flex items-center">--%>
+                    <%--                            <img--%>
+                    <%--                                    alt="Bidder Avatar"--%>
+                    <%--                                    class="h-10 w-10 rounded-full mr-4"--%>
+                    <%--                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0W5BQJxnyBXrb3aLLXx4W7Qm0PXnoB3RiuyeISHMVVi_187sE3IpE0IiJg4Pvq6Pt4XUbqjhTWgynt5WgNltCqLWP8gbqRX6m1Hxp_jKVzpqFawEyS_zHGkUngf-JtCDL01VV3Fw-L5mjdsofQYXHH5CTFne6bgfVBY18IZDsC2M3ipWJqSFYyIFVqud9O1L6Nk3r3kliCGz63FXnoMRxyYIOLnJ3YhwVkiUSWAUPvSRuUT-VXrtBU9oARNBGgcgXTvPlhuRfsqY"--%>
+                    <%--                            />--%>
+                    <%--                            <div>--%>
+                    <%--                                <p class="text-sm font-semibold text-gray-800">Sarah L.</p>--%>
+                    <%--                                <p class="text-xs text-gray-500">2 days ago</p>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                        <p class="text-lg font-semibold text-gray-700">$380</p>--%>
+                    <%--                    </div>--%>
 
                 </div>
             </div>
@@ -384,7 +387,7 @@
     </footer>
 </div>
 <script src="assets/scripts/singleAuction.js"></script>
-<script src="assets/scripts/auctionWebSocket.js"></script>
-<script src="assets/scripts/bidPlace.js"></script
+<script src="assets/scripts/bidPlace.js"></script>
+<script src="assets/scripts/session.js"></script>
 </body>
 </html>

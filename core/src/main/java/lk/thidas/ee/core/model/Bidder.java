@@ -2,7 +2,6 @@ package lk.thidas.ee.core.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Bidder implements Serializable {
     private User user;

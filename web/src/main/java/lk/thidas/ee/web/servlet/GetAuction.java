@@ -31,9 +31,6 @@ public class GetAuction extends HttpServlet {
         Response_DTO response_DTO = new Response_DTO();
 
         String auctionID = req.getParameter("id");
-        System.out.println("auctionID: " + auctionID);
-        LocalDateTime time = LocalDateTime.now();
-        System.out.println("time: " + time);
 
         if (auctionID != null && !auctionID.isEmpty()) {
             AuctionItem auctionItem = auctionService.getAuctionItem(auctionID);

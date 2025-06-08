@@ -5,6 +5,7 @@ import jakarta.ejb.Stateless;
 import lk.thidas.ee.core.model.AuctionItem;
 import lk.thidas.ee.core.model.Bidder;
 import lk.thidas.ee.core.model.User;
+import lk.thidas.ee.ejb.mdb.AuctionMessageSender;
 import lk.thidas.ee.ejb.remote.AuctionService;
 import lk.thidas.ee.ejb.remote.BidService;
 import lk.thidas.ee.ejb.remote.UserService;
@@ -43,6 +44,25 @@ public class BidManagerBean implements BidService {
         if (auctionItem != null && userData != null) {
             Bidder newBid = new Bidder(userData, auctionItem, id, bidAmount, timestamp);
             bidders.put(id, newBid);
+            System.out.println("new added: "
+                    + newBid.getUser().getEmail()
+                    + "\n"
+                    + newBid.getItem().getTitle()
+                    + "\n"
+                    + newBid.getBidAmount()
+                    + "\n"
+                    + newBid.getBidDate()
+            );
+
+            AuctionMessageSender sender = new AuctionMessageSender();
+            sender.sendMessage(
+                    "{ " +
+                            "\"auctionId\": \"" + auctionId + "\", " +
+                            "\"bid\": \"" + newBid.getBidAmount() + "\", " +
+                            "\"email\": \"" + newBid.getUser().getEmail() + "\", " +
+                            "\"time\": \"" + newBid.getBidDate() + "\"" +
+                            "}");
+
             return newBid;
         }
         return null;

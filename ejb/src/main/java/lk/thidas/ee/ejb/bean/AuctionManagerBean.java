@@ -43,7 +43,6 @@ public class AuctionManagerBean implements AuctionService {
         addAuctionItem(new AuctionItem("Vintage Vinyl Records", "Collection of classic rock vinyl records", 40.00, now.plusDays(5).plusHours(12), now.plusDays(6)));
         addAuctionItem(new AuctionItem("Sports Memorabilia", "Signed baseball from championship game", 180.00, now.minusHours(4), now.plusDays(1)));
 
-        System.out.println("Sample auction items created.");
     }
 
     @Override
@@ -71,7 +70,7 @@ public class AuctionManagerBean implements AuctionService {
     @Override
     public void addNewBid(String auctionID, User user, double amount) {
 
-         AuctionItem existingItem = getAuctionItem(auctionID);
+        AuctionItem existingItem = getAuctionItem(auctionID);
 
         if (existingItem != null) {
             // In a real implementation, we would create a Bidder object and associate it with the item
@@ -114,5 +113,16 @@ public class AuctionManagerBean implements AuctionService {
     @Override
     public Map<String, AuctionItem> getAllAuctionItems() {
         return auctionItems;
+    }
+
+    @Override
+    public boolean isAuctionActive(String auctionID) {
+        AuctionItem item = getAuctionItem(auctionID);
+        LocalDateTime now = LocalDateTime.now();
+
+        boolean isActive = (now.isEqual(item.getStartTime()) || now.isAfter(item.getStartTime())) && now.isBefore(item.getEndTime());
+
+        System.out.println("Checking if auction " + auctionID + " is active: " + isActive);
+        return isActive;
     }
 }

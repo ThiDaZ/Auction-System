@@ -5,13 +5,22 @@ import jakarta.websocket.Session;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @ApplicationScoped
 public class SessionHandler {
+
+    private static SessionHandler instance;
+
+    public SessionHandler() {
+        instance = this;
+    }
+
+    public static SessionHandler getInstance() {
+        return instance;
+    }
 
     private final Map<Session, String> sessionAuctionMap = new ConcurrentHashMap<>();
     private final Map<String, Set<Session>> auctionSessionMap = new ConcurrentHashMap<>(); // update ui
@@ -53,7 +62,7 @@ public class SessionHandler {
         for (Session session : sessions) {
             if (session.isOpen()) {
                 try {
-                    session.getBasicRemote().sendText(message);
+                    session.getBasicRemote().sendText(String.valueOf(message));
                 } catch (IOException e) {
                     System.out.println("Failed to send to session: " + e.getMessage());
                 }
